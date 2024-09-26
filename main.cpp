@@ -1,4 +1,6 @@
 #include"SceneManager.h"
+#include"Key.h"
+
 int main() {
 	string startDisp =
 		"-------------------------\n"
@@ -25,4 +27,10 @@ int main() {
 
 	SceneManager::GetInstance().SetCurrentScene("Ω√¿€");
 	SceneManager::GetInstance().ShowCurrentScene();
+
+	Key key;
+
+	while (true) {
+		key.GetKey();
+	}
 }
