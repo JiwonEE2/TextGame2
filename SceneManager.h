@@ -10,7 +10,7 @@ class SceneManager :public Singleton<SceneManager>
 public:
 	SceneManager();
 	~SceneManager();
-	void AddScene(const string& name, const string& desc);
+	void AddScene(const string& name, const string& desc, const string& disp);
 	void SetCurrentScene(const string& name);
 	void ShowCurrentScene()const;
 };

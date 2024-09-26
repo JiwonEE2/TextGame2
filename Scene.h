@@ -6,7 +6,8 @@ class Scene
 {
 	string name;
 	string desc;
+	string disp;
 public:
-	Scene(const string& name, const string& desc) :name(name), desc(desc) {}
+	Scene(const string& name, const string& desc, const string& disp) :name(name), desc(desc), disp(disp) {}
 	void Print()const;
 };
