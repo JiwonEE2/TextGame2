@@ -1,9 +1,10 @@
 #include"SceneManager.h"
 int main() {
 	string startDisp =
-		"--------\n"
-		"|start	|\n"
-		"--------\n";
+		"-------------------------\n"
+		"|\t새 게임\t\t|\n"
+		"|\t게임 종료\t|\n"
+		"-------------------------\n";
 	string homeDisp =
 		"--------\n"
 		"|home	|\n"
