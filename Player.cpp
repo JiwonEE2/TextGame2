@@ -40,7 +40,14 @@ void Player::SetPosition(int n)
 		GetKey();
 		if (y <= 1)y = 1;
 		else if (y >= 2)y = 2;
-	}	
+	}
+	else if (n == 2) {
+		GetKey();
+		if (x <= 1)x = 1;
+		else if (x >= 19)x = 19;
+		if (y <= 1)y = 1;
+		else if (y >= 19)y = 19;
+	}
 }
 
 void Player::GetKey()
