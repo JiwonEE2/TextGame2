@@ -4,10 +4,10 @@
 DisplayMaker::DisplayMaker()
 {
 	startDisp =
-		"--------------------\n"
-		"|  새 게임          |\n"
-		"|  게임 종료        |\n"
-		"--------------------\n";
+		"-------------------\n"
+		"   새 게임\n"
+		"   게임 종료\n"
+		"-------------------\n";
 	homeDisp =
 		"--------\n"
 		"|home	|\n"
@@ -29,10 +29,10 @@ DisplayMaker::DisplayMaker(Player* player)
 	// 21,22~2개
 	// 41,42~2개
 	startDisp =
-		"--------------------\n"
-		"|  새 게임          |\n"
-		"|  게임 종료        |\n"
-		"--------------------\n";
+		"-------------------\n"
+		"   새 게임\n"
+		"   게임 종료\n"
+		"-------------------\n";
 	homeDisp =
 		"--------\n"
 		"|home	|\n"
@@ -50,15 +50,14 @@ DisplayMaker::DisplayMaker(Player* player)
 string DisplayMaker::GetStartDisp()
 {
 	int n = pp->GetY();
-	if (n == 2) {
-		startDisp.replace(22, 2, "  ");
-		startDisp.replace(42, 2, "▶");
+	if (n == 1) {
+		startDisp.replace(21, 1, "*");
+		startDisp.replace(32, 1, " ");
 	}
 	else {
-		startDisp.replace(42, 2, "  ");
-		startDisp.replace(22, 2, "▶");
-	}
-	
+		startDisp.replace(21, 1, " ");
+		startDisp.replace(32, 1, "*");
+	}	
 	return startDisp;
 }
 
