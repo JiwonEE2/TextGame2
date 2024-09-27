@@ -1,12 +1,13 @@
-#include "DisplayMaker.h"
+#include"DisplayMaker.h"
+#include"Player.h"
 
 DisplayMaker::DisplayMaker()
 {
 	startDisp =
-		"-------------------------\n"
-		"|\t새 게임\t\t|\n"
-		"|\t게임 종료\t|\n"
-		"-------------------------\n";
+		"--------------------\n"
+		"|  새 게임          |\n"
+		"|  게임 종료        |\n"
+		"--------------------\n";
 	homeDisp =
 		"--------\n"
 		"|home	|\n"
@@ -23,6 +24,10 @@ DisplayMaker::DisplayMaker()
 
 string DisplayMaker::GetStartDisp()
 {
+	//int x = player.GetX();
+	//int y = player.GetY();
+	//int n = x * 20 + y;
+	//startDisp.replace(n, 2, "▶");
 	return startDisp;
 }
 

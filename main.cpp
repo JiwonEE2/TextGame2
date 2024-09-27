@@ -3,6 +3,8 @@
 #include"Player.h"
 
 int main() {
+	Player player("Dori");
+
 	DisplayMaker displayMaker;
 	string startDisp = displayMaker.GetStartDisp();
 	string homeDisp = displayMaker.GetHomeDisp();
@@ -17,9 +19,8 @@ int main() {
 	SceneManager::GetInstance().SetCurrentScene("Ω√¿€");
 	SceneManager::GetInstance().ShowCurrentScene();
 
-	Player player("Dori");
-
 	while (true) {
 		player.SetPosition(1);
+		displayMaker.GetStartDisp();
 	}
 }

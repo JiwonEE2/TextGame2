@@ -14,6 +14,8 @@ class Player
 	int level;
 public:
 	Player(const string& name);
+	int GetX()const;
+	int GetY()const;
 	void SetPosition(int n);
 	void GetKey();
 	void LevelUp()const;

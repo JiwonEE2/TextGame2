@@ -12,6 +12,16 @@ Player::Player(const string& name)
 	level = 1;
 }
 
+int Player::GetX() const
+{
+	return x;
+}
+
+int Player::GetY() const
+{
+	return y;
+}
+
 void Player::SetPosition(int n)
 {
 	if (n == 1) {
