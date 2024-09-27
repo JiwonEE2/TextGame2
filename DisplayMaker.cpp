@@ -22,12 +22,34 @@ DisplayMaker::DisplayMaker()
 		"--------\n";
 }
 
+DisplayMaker::DisplayMaker(Player* player)
+{
+	pp = player;
+	startDisp =
+		"--------------------\n"
+		"|  새 게임          |\n"
+		"|  게임 종료        |\n"
+		"--------------------\n";
+	homeDisp =
+		"--------\n"
+		"|home	|\n"
+		"--------\n";
+	townDisp =
+		"--------\n"
+		"|town	|\n"
+		"--------\n";
+	forestDisp =
+		"--------\n"
+		"|forest|\n"
+		"--------\n";
+}
+
 string DisplayMaker::GetStartDisp()
 {
-	//int x = player.GetX();
-	//int y = player.GetY();
-	//int n = x * 20 + y;
-	//startDisp.replace(n, 2, "▶");
+	int x = pp->GetX();
+	int y = pp->GetY();
+	int n = x * 20 + y;
+	startDisp.replace(n, 2, "▶");
 	return startDisp;
 }
 

@@ -5,7 +5,7 @@
 int main() {
 	Player player("Dori");
 
-	DisplayMaker displayMaker;
+	DisplayMaker displayMaker(&player);
 	string startDisp = displayMaker.GetStartDisp();
 	string homeDisp = displayMaker.GetHomeDisp();
 	string townDisp = displayMaker.GetTownDisp();
