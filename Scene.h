@@ -10,4 +10,5 @@ class Scene
 public:
 	Scene(const string& name, const string& desc, const string& disp) :name(name), desc(desc), disp(disp) {}
 	void Print()const;
+	void SetDisplay(const string& display);
 };

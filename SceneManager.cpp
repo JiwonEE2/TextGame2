@@ -31,6 +31,11 @@ void SceneManager::ShowCurrentScene() const
 	else { cout << "설정된 씬이 없습니다.\n"; }
 }
 
+void SceneManager::EditScene(const string& display)
+{
+	currentScene->SetDisplay(display);
+}
+
 void SceneManager::RemoveScene()
 {
 	delete currentScene;

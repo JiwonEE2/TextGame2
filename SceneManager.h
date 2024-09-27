@@ -13,5 +13,6 @@ public:
 	void AddScene(const string& name, const string& desc, const string& disp);
 	void SetCurrentScene(const string& name);
 	void ShowCurrentScene()const;
+	void EditScene(const string& display);
 	void RemoveScene();
 };

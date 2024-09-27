@@ -6,3 +6,8 @@ void Scene::Print() const
 	cout << "설명 : " << desc << "\n";
 	cout << "========= 출력되는 화면 =========\n" << disp;
 }
+
+void Scene::SetDisplay(const string& display)
+{
+	disp = display;
+}
