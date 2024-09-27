@@ -5,13 +5,16 @@ using namespace std;
 class Player
 {
 	string name;
+	int x, y;
+	char key;
 	int attack;
 	int health;
 	int experience;
 	int level;
 public:
 	Player(const string& name);
-	void Move()const;
+	void SetPosition();
+	void GetKey();
 	void LevelUp()const;
 	void Attack()const;
 	void Attacked()const;

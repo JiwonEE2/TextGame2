@@ -1,6 +1,6 @@
 #include"DisplayMaker.h"
 #include"SceneManager.h"
-#include"Key.h"
+#include"Player.h"
 
 int main() {
 	DisplayMaker displayMaker;
@@ -17,9 +17,9 @@ int main() {
 	SceneManager::GetInstance().SetCurrentScene("Ω√¿€");
 	SceneManager::GetInstance().ShowCurrentScene();
 
-	Key key;
+	Player player("Dori");
 
 	while (true) {
-		key.GetKey();
+		player.GetKey();
 	}
 }
