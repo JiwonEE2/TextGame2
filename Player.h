@@ -6,6 +6,7 @@ class Player
 {
 	string name;
 	int x, y;
+	bool isChoice;
 	char key;
 	int attack;
 	int health;
@@ -13,7 +14,7 @@ class Player
 	int level;
 public:
 	Player(const string& name);
-	void SetPosition();
+	void SetPosition(int n);
 	void GetKey();
 	void LevelUp()const;
 	void Attack()const;

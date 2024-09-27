@@ -20,6 +20,6 @@ int main() {
 	Player player("Dori");
 
 	while (true) {
-		player.GetKey();
+		player.SetPosition(1);
 	}
 }
