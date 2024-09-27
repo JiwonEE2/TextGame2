@@ -6,38 +6,37 @@ using namespace std;
 void Key::GetKey()
 {
 	key = _getch();
-	if (key == 224) {
-		key = _getch();
-		switch (key) {
+	switch (key) {
 		// enter, spacebar
-		case 13:
-		case 32:
-			Enter();
-			break;
+	case 13:
+	case 32:
+		cout << "엔터를 쳤다\n";
+		Enter();
+		break;
 		// 대,소문자 허용
-		case 87:
-		case 119:
-			Up();
-			break;
-		case 83:
-		case 115:
-			Down();
-			break;
-		case 65:
-		case 97:
-			Left();
-			break;
-		case 68:
-		case 100:
-			Right();
-			break;
+	case 87:
+	case 119:
+		Up();
+		break;
+	case 83:
+	case 115:
+		Down();
+		break;
+	case 65:
+	case 97:
+		Left();
+		break;
+	case 68:
+	case 100:
+		Right();
+		break;
 		// J,j
-		case 74:
-		case 106:
-			Attack();
-			break;
-		}
+	case 74:
+	case 106:
+		Attack();
+		break;
 	}
+
 }
 
 void Key::Enter() const
