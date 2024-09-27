@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DisplayMaker.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
@@ -134,6 +135,7 @@
     <ClInclude Include="Singleton.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DisplayMaker.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
