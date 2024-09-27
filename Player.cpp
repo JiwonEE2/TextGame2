@@ -43,10 +43,10 @@ void Player::SetPosition(int n)
 	}
 	else if (n == 2) {
 		GetKey();
-		if (x <= 1)x = 1;
-		else if (x >= 19)x = 19;
+		if (x <= 0)x = 0;
+		else if (x >= 16)x = 16;
 		if (y <= 1)y = 1;
-		else if (y >= 19)y = 19;
+		else if (y >= 18)y = 18;
 	}
 }
 

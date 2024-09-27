@@ -7,7 +7,6 @@ class DisplayMaker
 	string startDisp, homeDisp, townDisp, forestDisp;
 	Player* pp;
 public:
-	DisplayMaker();
 	DisplayMaker(Player* player);
 	string GetStartDisp();
 	string GetHomeDisp();

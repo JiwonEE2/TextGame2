@@ -1,27 +1,6 @@
 #include"DisplayMaker.h"
 #include"Player.h"
 
-DisplayMaker::DisplayMaker()
-{
-	startDisp =
-		"-------------------\n"
-		"   새 게임\n"
-		"   게임 종료\n"
-		"-------------------\n";
-	homeDisp =
-		"--------\n"
-		"|home	|\n"
-		"--------\n";
-	townDisp =
-		"--------\n"
-		"|town	|\n"
-		"--------\n";
-	forestDisp =
-		"--------\n"
-		"|forest|\n"
-		"--------\n";
-}
-
 DisplayMaker::DisplayMaker(Player* player)
 {
 	pp = player;
@@ -34,9 +13,26 @@ DisplayMaker::DisplayMaker(Player* player)
 		"   게임 종료\n"
 		"-------------------\n";
 	homeDisp =
-		"--------\n"
-		"|home	|\n"
-		"--------\n";
+		"------------------\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"------------------\n";
 	townDisp =
 		"--------\n"
 		"|town	|\n"
@@ -57,12 +53,36 @@ string DisplayMaker::GetStartDisp()
 	else {
 		startDisp.replace(21, 1, " ");
 		startDisp.replace(32, 1, "*");
-	}	
+	}
 	return startDisp;
 }
 
 string DisplayMaker::GetHomeDisp()
 {
+	homeDisp=
+		"------------------\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"------------------\n";
+	int x = pp->GetX();
+	int y = pp->GetY();
+	homeDisp.replace(x + 20*y, 1, "*");
 	return homeDisp;
 }
 
