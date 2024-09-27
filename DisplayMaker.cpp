@@ -25,6 +25,9 @@ DisplayMaker::DisplayMaker()
 DisplayMaker::DisplayMaker(Player* player)
 {
 	pp = player;
+	// 0123~20
+	// 21,22~2개
+	// 41,42~2개
 	startDisp =
 		"--------------------\n"
 		"|  새 게임          |\n"
@@ -46,10 +49,16 @@ DisplayMaker::DisplayMaker(Player* player)
 
 string DisplayMaker::GetStartDisp()
 {
-	int x = pp->GetX();
-	int y = pp->GetY();
-	int n = x * 20 + y;
-	startDisp.replace(n, 2, "▶");
+	int n = pp->GetY();
+	if (n == 2) {
+		startDisp.replace(22, 2, "  ");
+		startDisp.replace(42, 2, "▶");
+	}
+	else {
+		startDisp.replace(42, 2, "  ");
+		startDisp.replace(22, 2, "▶");
+	}
+	
 	return startDisp;
 }
 

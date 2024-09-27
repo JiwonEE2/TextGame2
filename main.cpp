@@ -21,6 +21,10 @@ int main() {
 
 	while (true) {
 		player.SetPosition(1);
-		displayMaker.GetStartDisp();
+		startDisp=displayMaker.GetStartDisp();
+		SceneManager::GetInstance().RemoveScene();
+		SceneManager::GetInstance().AddScene("시작", "1. 새 게임, 2. 게임 종료", startDisp);
+		SceneManager::GetInstance().SetCurrentScene("시작"); 
+		SceneManager::GetInstance().ShowCurrentScene();
 	}
 }

@@ -24,6 +24,7 @@ int Player::GetY() const
 
 void Player::SetPosition(int n)
 {
+	// 1번씬일 경우(시작 씬)
 	if (n == 1) {
 		GetKey();
 		x = 1;
@@ -33,9 +34,7 @@ void Player::SetPosition(int n)
 			cout << x <<", " << y << "를 선택\n";
 			isChoice = false;
 		}
-	}
-	// 키를 여기에? enum으로?
-	
+	}	
 }
 
 void Player::GetKey()
