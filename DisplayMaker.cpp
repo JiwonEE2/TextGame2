@@ -78,18 +78,34 @@ string DisplayMaker::GetHomeDisp()
 		"|                 |\n"
 		"|                 |\n"
 		"|                 |\n"
-		"|                 |\n"
+		"|    | OUT |      |\n"
 		"------------------\n";
 	int x = pp->GetX();
 	int y = pp->GetY();
 	homeDisp.replace(x + 20 * y, 1, "*");
 	if (x > 4 && x < 11 && y>5 && y < 8)IsBed();
+	else if (x > 4 && x < 11 && y>17)IsOut();
 	return homeDisp;
 }
 
 void DisplayMaker::IsBed() const
 {
+	if (pp->GetIsChoice() == true) {
+		cout << "잠을 잡니다...\n";
+		pp->SetIsChoice(false);
+	}
 	cout << "Go to Sleep?\n";
+}
+
+bool DisplayMaker::GetIsOut()
+{
+	return isOut;
+}
+
+void DisplayMaker::IsOut()
+{
+	cout << "나가나?\n";
+	isOut = true;
 }
 
 string DisplayMaker::GetTownDisp()

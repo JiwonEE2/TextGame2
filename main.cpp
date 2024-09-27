@@ -45,6 +45,10 @@ int main() {
 			SceneManager::GetInstance().SetCurrentScene("집");
 			SceneManager::GetInstance().ShowCurrentScene();
 			player.SetPosition(2);
+			if (player.GetIsChoice() && displayMaker.GetIsOut()) {
+				cout << "나가자~~~~\n";
+				break;
+			}
 		}
 	}
 }
