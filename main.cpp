@@ -20,11 +20,20 @@ int main() {
 	SceneManager::GetInstance().ShowCurrentScene();
 
 	while (true) {
+		if (player.GetIsChoice()) {
+			player.SetIsChoice(false);
+			break;
+		}
 		player.SetPosition(1);
-		startDisp=displayMaker.GetStartDisp();
+		startDisp = displayMaker.GetStartDisp();
 		SceneManager::GetInstance().RemoveScene();
 		SceneManager::GetInstance().AddScene("시작", "1. 새 게임, 2. 게임 종료", startDisp);
-		SceneManager::GetInstance().SetCurrentScene("시작"); 
+		SceneManager::GetInstance().SetCurrentScene("시작");
+		SceneManager::GetInstance().ShowCurrentScene();
+	}
+
+	if (player.GetY() == 1) {
+		SceneManager::GetInstance().SetCurrentScene("마을");
 		SceneManager::GetInstance().ShowCurrentScene();
 	}
 }

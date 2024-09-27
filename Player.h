@@ -16,6 +16,8 @@ public:
 	Player(const string& name);
 	int GetX()const;
 	int GetY()const;
+	bool GetIsChoice();
+	void SetIsChoice(bool is);
 	void SetPosition(int n);
 	void GetKey();
 	void LevelUp()const;

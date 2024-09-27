@@ -22,18 +22,24 @@ int Player::GetY() const
 	return y;
 }
 
+bool Player::GetIsChoice()
+{
+	return isChoice;
+}
+
+void Player::SetIsChoice(bool is)
+{
+	isChoice = is;
+}
+
+
 void Player::SetPosition(int n)
 {
 	// 1번씬일 경우(시작 씬)
 	if (n == 1) {
 		GetKey();
-		x = 1;
 		if (y <= 1)y = 1;
 		else if (y >= 2)y = 2;
-		if (isChoice == true) {
-			cout << x <<", " << y << "를 선택\n";
-			isChoice = false;
-		}
 	}	
 }
 
