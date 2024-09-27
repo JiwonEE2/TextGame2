@@ -10,6 +10,7 @@ public:
 	DisplayMaker(Player* player);
 	string GetStartDisp();
 	string GetHomeDisp();
+	void IsBed()const;
 	string GetTownDisp();
 	string GetForestDisp();
 };

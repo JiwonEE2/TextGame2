@@ -59,15 +59,15 @@ string DisplayMaker::GetStartDisp()
 
 string DisplayMaker::GetHomeDisp()
 {
-	homeDisp=
+	homeDisp =
 		"------------------\n"
 		"|                 |\n"
 		"|                 |\n"
 		"|                 |\n"
 		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
+		"|    ________     |\n"
+		"|    |  BED |     |\n"
+		"|    |______|     |\n"
 		"|                 |\n"
 		"|                 |\n"
 		"|                 |\n"
@@ -82,8 +82,14 @@ string DisplayMaker::GetHomeDisp()
 		"------------------\n";
 	int x = pp->GetX();
 	int y = pp->GetY();
-	homeDisp.replace(x + 20*y, 1, "*");
+	homeDisp.replace(x + 20 * y, 1, "*");
+	if (x > 4 && x < 11 && y>5 && y < 8)IsBed();
 	return homeDisp;
+}
+
+void DisplayMaker::IsBed() const
+{
+	cout << "Go to Sleep?\n";
 }
 
 string DisplayMaker::GetTownDisp()
