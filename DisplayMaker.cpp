@@ -1,5 +1,6 @@
 #include"DisplayMaker.h"
 #include"Player.h"
+#include"Monster.h"
 
 DisplayMaker::DisplayMaker(Player* player)
 {

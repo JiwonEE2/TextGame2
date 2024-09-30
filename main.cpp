@@ -1,7 +1,7 @@
 #include"DisplayMaker.h"
 #include"SceneManager.h"
 #include"Player.h"
-#include"Monster.h"
+#include"EarthWorm.h"
 
 int main() {
 	Player player("Dori");
@@ -73,9 +73,10 @@ int main() {
 
 		// 몬스터 생성
 		srand(time(0));
-		for (int i = 0; i < 5; i++) {
-			Monster earthWorm("약한지렁이", 1, 5);
-			earthWorm.Print();
+		int num = 5;
+		EarthWorm* earthWorms = new EarthWorm[num];
+		for (int i = 0; i < num; i++) {
+			earthWorms[i].Print();
 		}
 
 		// 숲으로 가기

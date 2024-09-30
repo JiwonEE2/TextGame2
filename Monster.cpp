@@ -1,12 +1,12 @@
 #include "Monster.h"
 
-Monster::Monster(const string& name, int attack, int health)
+Monster::Monster()
 {
-	this->name = name;
-	this->attack = attack;
-	this->health = health;
-	mx = rand() % 18 + 1;
-	my = rand() % 18 + 1;
+	name = "monster";
+	attack = 0;
+	health = 0;
+	mx = 0;
+	my = 0;
 }
 
 void Monster::Print() const
