@@ -8,11 +8,9 @@ int main() {
 	string startDisp = displayMaker.GetStartDisp();
 	string homeDisp;
 
-	string forestDisp = displayMaker.GetForestDisp();
-
+	
 	SceneManager::GetInstance().AddScene("집", "1. 회복, 2. 마을로", homeDisp);
 
-	SceneManager::GetInstance().AddScene("숲", "1. 마을로", forestDisp);
 
 	player.SetPosition(1);
 	SceneManager::GetInstance().AddScene("시작", "1. 새 게임, 2. 게임 종료", startDisp);
@@ -70,6 +68,24 @@ int main() {
 			system("cls");
 			townDisp = displayMaker.GetTownDisp();
 			SceneManager::GetInstance().EditScene(townDisp);
+			SceneManager::GetInstance().ShowCurrentScene();
+			player.InputKey();
+		}
+
+		// 숲으로 가기
+		player.SetXY(1, 5);
+		string forestDisp = displayMaker.GetForestDisp();
+		SceneManager::GetInstance().AddScene("숲", "1. 마을로", forestDisp);
+		SceneManager::GetInstance().SetCurrentScene("숲");
+		SceneManager::GetInstance().ShowCurrentScene();
+		player.SetIsChoice(false);
+		displayMaker.SetIsOut(false);
+		player.InputKey();
+		while (!player.GetIsChoice() || !displayMaker.GetIsOut()) {
+			player.SetPosition(4);
+			system("cls");
+			forestDisp = displayMaker.GetForestDisp();
+			SceneManager::GetInstance().EditScene(forestDisp);
 			SceneManager::GetInstance().ShowCurrentScene();
 			player.InputKey();
 		}

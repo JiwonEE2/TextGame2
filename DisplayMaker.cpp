@@ -157,5 +157,31 @@ void DisplayMaker::GoForest()
 
 string DisplayMaker::GetForestDisp()
 {
+	forestDisp =
+		"------------------\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|_______|  |______|\n"
+		"|home             |\n"
+		"|_______    ______|\n"
+		"|       |  |      |\n"
+		"|       |  |   /\\ |\n"
+		"|       |  |   || |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"------------------\n";
+	int x = pp->GetX();
+	int y = pp->GetY();
+	forestDisp.replace(x + 20 * y, 1, "*");
+	if (x == 3 && y == 6)GoHome();
+	else if (x > 15 && (y == 7 || y == 6))GoForest();
 	return forestDisp;
 }
