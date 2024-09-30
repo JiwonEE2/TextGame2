@@ -14,5 +14,4 @@ public:
 	void SetCurrentScene(const string& name);
 	void ShowCurrentScene()const;
 	void EditScene(const string& display);
-	void RemoveScene();
 };

@@ -6,7 +6,8 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
-	for (auto& pair : scenes)delete pair.second;
+	for (auto& pair : scenes)
+		delete pair.second;
 }
 
 void SceneManager::AddScene(const string& name, const string& desc, const string& disp)
@@ -34,9 +35,4 @@ void SceneManager::ShowCurrentScene() const
 void SceneManager::EditScene(const string& display)
 {
 	currentScene->SetDisplay(display);
-}
-
-void SceneManager::RemoveScene()
-{
-	delete currentScene;
 }

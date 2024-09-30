@@ -47,7 +47,7 @@ void Player::SetPosition(int n)
 	}
 }
 
-void Player::GetKey()
+void Player::InputKey()
 {
 	key = _getch();
 	switch (key) {

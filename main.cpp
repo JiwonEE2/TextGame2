@@ -24,20 +24,19 @@ int main() {
 		startDisp = displayMaker.GetStartDisp();
 		SceneManager::GetInstance().EditScene(startDisp);
 		SceneManager::GetInstance().ShowCurrentScene();
-		player.GetKey();
+		player.InputKey();
 		player.SetPosition(1);
 	}
 
 	player.SetIsChoice(false);
-	SceneManager::GetInstance().RemoveScene();
 	SceneManager::GetInstance().SetCurrentScene("집");
-
+	player.SetIsChoice(false);
 	if (player.GetY() == 1) {
 		system("cls");
 		homeDisp = displayMaker.GetHomeDisp();
 		SceneManager::GetInstance().EditScene(homeDisp);
 		SceneManager::GetInstance().ShowCurrentScene();
-		player.GetKey();
+		player.InputKey();
 		player.SetPosition(2);
 
 		while (true) {
@@ -45,10 +44,13 @@ int main() {
 			homeDisp = displayMaker.GetHomeDisp();
 			SceneManager::GetInstance().EditScene(homeDisp);
 			SceneManager::GetInstance().ShowCurrentScene();
-			player.GetKey();
+			player.InputKey();
 			player.SetPosition(2);
-			if (player.GetIsChoice() && displayMaker.GetIsOut()) {
+			bool temp1 = player.GetIsChoice();
+			bool temp2 = displayMaker.GetIsOut();
+			if (temp1&&temp2) {
 				cout << "나가자~~~~\n";
+				player.SetIsChoice(false);
 				break;
 			}
 		}

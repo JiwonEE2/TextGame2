@@ -83,8 +83,8 @@ string DisplayMaker::GetHomeDisp()
 	int x = pp->GetX();
 	int y = pp->GetY();
 	homeDisp.replace(x + 20 * y, 1, "*");
-	if (x > 4 && x < 11 && y>5 && y < 8)IsBed();
-	else if (x > 4 && x < 11 && y>17)IsOut();
+	if (x > 4 && x < 11 && y > 5 && y < 8)IsBed();
+	else if (x > 4 && x < 10 && y > 17)IsOut();
 	return homeDisp;
 }
 

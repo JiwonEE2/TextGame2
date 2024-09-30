@@ -19,7 +19,7 @@ public:
 	bool GetIsChoice();
 	void SetIsChoice(bool is);
 	void SetPosition(int n);
-	void GetKey();
+	void InputKey();
 	void LevelUp()const;
 	void Attack()const;
 	void Attacked()const;
