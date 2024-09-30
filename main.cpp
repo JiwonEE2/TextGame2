@@ -1,16 +1,15 @@
 #include"DisplayMaker.h"
 #include"SceneManager.h"
 #include"Player.h"
+#include"Monster.h"
 
 int main() {
 	Player player("Dori");
 	DisplayMaker displayMaker(&player);
 	string startDisp = displayMaker.GetStartDisp();
 	string homeDisp;
-
 	
 	SceneManager::GetInstance().AddScene("집", "1. 회복, 2. 마을로", homeDisp);
-
 
 	player.SetPosition(1);
 	SceneManager::GetInstance().AddScene("시작", "1. 새 게임, 2. 게임 종료", startDisp);
@@ -72,8 +71,15 @@ int main() {
 			player.InputKey();
 		}
 
+		// 몬스터 생성
+		srand(time(0));
+		for (int i = 0; i < 5; i++) {
+			Monster earthWorm("약한지렁이", 1, 5);
+			earthWorm.Print();
+		}
+
 		// 숲으로 가기
-		player.SetXY(1, 5);
+		player.SetXY(1, 7);
 		string forestDisp = displayMaker.GetForestDisp();
 		SceneManager::GetInstance().AddScene("숲", "1. 마을로", forestDisp);
 		SceneManager::GetInstance().SetCurrentScene("숲");
