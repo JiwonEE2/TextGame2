@@ -181,6 +181,7 @@ string DisplayMaker::GetForestDisp()
 		"------------------\n";
 	int x = pp->GetX();
 	int y = pp->GetY();
+	
 	forestDisp.replace(x + 20 * y, 1, "*");
 	if (x == 3 && y == 6)GoHome();
 	else if (x > 15 && (y == 7 || y == 6))GoForest();

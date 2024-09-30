@@ -4,15 +4,17 @@ using namespace std;
 
 class Player
 {
-	string name;
-	int x, y;
 	bool isChoice;
 	char key;
-	int attack;
-	int health;
 	int experience;
 	int level;
+protected:
+	string name;
+	int x, y;
+	int attack;
+	int health;
 public:
+	Player() {}
 	Player(const string& name);
 	int GetX()const;
 	int GetY()const;
@@ -24,4 +26,5 @@ public:
 	void LevelUp()const;
 	void Attack()const;
 	void Attacked()const;
+	virtual void Print()const;
 };

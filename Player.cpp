@@ -103,3 +103,8 @@ void Player::Attack() const
 void Player::Attacked() const
 {
 }
+
+void Player::Print() const
+{
+	cout << name << "가 x : " << x << ", y : " << y << "에 생성되었습니다.\n";
+}

@@ -1,7 +1,7 @@
 #pragma once
-#include"Monster.h"
+#include"Player.h"
 
-class EarthWorm :public Monster
+class EarthWorm :public Player
 {
 public:
 	EarthWorm();
