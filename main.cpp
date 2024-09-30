@@ -74,7 +74,7 @@ int main() {
 		// 몬스터 생성
 		srand(time(0));
 		int num = 5;
-		EarthWorm* earthWorms = new EarthWorm[5];
+		EarthWorm earthWorms[5] = {};
 		for (int i = 0; i < num; i++) {
 			earthWorms[i].Print();
 		}

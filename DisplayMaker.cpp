@@ -156,7 +156,7 @@ void DisplayMaker::GoForest()
 	isOut = true;
 }
 
-string DisplayMaker::GetForestDisp(EarthWorm* monster)
+string DisplayMaker::GetForestDisp(EarthWorm monster[])
 {
 	forestDisp =
 		"------------------\n"
@@ -182,9 +182,8 @@ string DisplayMaker::GetForestDisp(EarthWorm* monster)
 	int x = pp->GetX();
 	int y = pp->GetY();
 	int mx[5], my[5];
-	*mp = monster;
 	for (int i = 0; i < 5; i++) {
-		//mp[i] = monster[i];
+		mp[i] = &monster[i];
 		mx[i] = mp[i]->GetX();
 		my[i] = mp[i]->GetY();
 		forestDisp.replace(mx[i] + 20 * my[i], 1, "~");

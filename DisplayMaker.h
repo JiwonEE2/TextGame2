@@ -20,6 +20,6 @@ public:
 	string GetTownDisp();
 	void GoHome();
 	void GoForest();
-	string GetForestDisp(EarthWorm* monster);
+	string GetForestDisp(EarthWorm ew[]);
 	void MonsterAttack(int i);
 };
