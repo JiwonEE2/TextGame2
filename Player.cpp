@@ -6,9 +6,9 @@ Player::Player(const string& name)
 	this->name = name;
 	x = 1, y = 1;
 	isChoice = false;
-	attack = 5;
-	health = 50;
-	maxHealth = 50;
+	attack = 3;
+	health = 20;
+	maxHealth = 20;
 	experience = 0;
 	maxExperience = 1000;
 	level = 1;
@@ -90,6 +90,7 @@ void Player::InputKey()
 	case 74:
 	case 106:
 		cout << "°ø°ÝÅ°\n";
+		pressAttack = true;
 		break;
 	}
 }
@@ -108,17 +109,28 @@ int Player::GetAttack()
 	return attack;
 }
 
+int Player::GetHealth()
+{
+	return health;
+}
+
 void Player::LevelUp() const
 {
 }
 
-void Player::Attack() const
+bool Player::GetPressAttack() const
 {
+	return pressAttack;
 }
 
-void Player::Attacked(Player other)
+void Player::SetPressAttack(bool is)
 {
-	health -= other.GetAttack();
+	pressAttack = is;
+}
+
+void Player::Attacked(Player* other)
+{
+	health -= other->GetAttack();
 }
 
 void Player::Print() const

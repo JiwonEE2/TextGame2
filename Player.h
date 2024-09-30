@@ -9,6 +9,7 @@ class Player
 	int experience;
 	int maxExperience;
 	int level;
+	bool pressAttack = false;
 protected:
 	string name;
 	int x, y;
@@ -27,8 +28,10 @@ public:
 	void InputKey();
 	void PrintStatus()const;
 	int GetAttack();
+	int GetHealth();
 	void LevelUp()const;
-	void Attack()const;
-	void Attacked(Player other);
+	bool GetPressAttack()const;
+	void SetPressAttack(bool is);
+	void Attacked(Player* other);
 	virtual void Print()const;
 };
