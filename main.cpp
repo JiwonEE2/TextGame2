@@ -7,11 +7,11 @@ int main() {
 	DisplayMaker displayMaker(&player);
 	string startDisp = displayMaker.GetStartDisp();
 	string homeDisp;
-	string townDisp = displayMaker.GetTownDisp();
-	string forestDisp = displayMaker.GetForestDisp();
 	
+	string forestDisp = displayMaker.GetForestDisp();
+
 	SceneManager::GetInstance().AddScene("집", "1. 회복, 2. 마을로", homeDisp);
-	SceneManager::GetInstance().AddScene("마을", "1. 집으로, 2. 숲으로", townDisp);
+	
 	SceneManager::GetInstance().AddScene("숲", "1. 마을로", forestDisp);
 
 	player.SetPosition(1);
@@ -48,11 +48,27 @@ int main() {
 			player.SetPosition(2);
 			bool temp1 = player.GetIsChoice();
 			bool temp2 = displayMaker.GetIsOut();
-			if (temp1&&temp2) {
+			if (temp1 && temp2) {
 				cout << "나가자~~~~\n";
 				player.SetIsChoice(false);
 				break;
 			}
+		}
+		system("cls");
+
+		// 나온 상태
+		player.SetXY(3, 5);
+		string townDisp = displayMaker.GetTownDisp();
+		SceneManager::GetInstance().AddScene("마을", "1. 집으로, 2. 숲으로", townDisp);
+		SceneManager::GetInstance().SetCurrentScene("마을");
+		SceneManager::GetInstance().ShowCurrentScene();
+		while (true) {
+			player.InputKey();
+			player.SetPosition(3);
+			system("cls");
+			townDisp = displayMaker.GetTownDisp();
+			SceneManager::GetInstance().EditScene(townDisp);
+			SceneManager::GetInstance().ShowCurrentScene();			
 		}
 	}
 }

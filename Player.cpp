@@ -39,12 +39,18 @@ void Player::SetPosition(int n)
 		if (y <= 1)y = 1;
 		else if (y >= 2)y = 2;
 	}
-	else if (n == 2) {
+	else if (n == 2 || n == 3) {
 		if (x <= 0)x = 0;
 		else if (x >= 16)x = 16;
 		if (y <= 1)y = 1;
 		else if (y >= 18)y = 18;
 	}
+}
+
+void Player::SetXY(int x, int y)
+{
+	this->x = x;
+	this->y = y;
 }
 
 void Player::InputKey()
@@ -61,7 +67,7 @@ void Player::InputKey()
 	case 87:
 	case 119:
 		y--;
-		cout << "»ó\n"<<y;
+		cout << "»ó\n" << y;
 		break;
 	case 83:
 	case 115:

@@ -19,6 +19,7 @@ public:
 	bool GetIsChoice();
 	void SetIsChoice(bool is);
 	void SetPosition(int n);
+	void SetXY(int x, int y);
 	void InputKey();
 	void LevelUp()const;
 	void Attack()const;

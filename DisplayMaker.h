@@ -15,5 +15,7 @@ public:
 	bool GetIsOut();
 	void IsOut();
 	string GetTownDisp();
+	void GoHome();
+	void GoForest();
 	string GetForestDisp();
 };

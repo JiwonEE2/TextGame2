@@ -110,7 +110,43 @@ void DisplayMaker::IsOut()
 
 string DisplayMaker::GetTownDisp()
 {
+	townDisp =
+		"------------------\n"
+		"|       |  |      |\n"
+		"| home  |  |      |\n"
+		"|  /_\\  |  |      |\n"
+		"|  |_|  |  |      |\n"
+		"|_______|  |______|\n"
+		"|           forest|\n"
+		"|_______    ______|\n"
+		"|       |  |      |\n"
+		"|       |  |   /\\ |\n"
+		"|       |  |   || |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"|       |  |      |\n"
+		"------------------\n";
+	int x = pp->GetX();
+	int y = pp->GetY();
+	townDisp.replace(x + 20 * y, 1, "*");
+	if (x == 3 && y == 4)GoHome();
+	else if (x > 15 && y == 7 || y == 6)GoForest();
 	return townDisp;
+}
+
+void DisplayMaker::GoHome()
+{
+	cout << "집으로 가시겠습니까?\n";
+}
+
+void DisplayMaker::GoForest()
+{
+	cout << "숲으로 가시겠습니까?\n";
 }
 
 string DisplayMaker::GetForestDisp()
