@@ -1,14 +1,13 @@
 #pragma once
 #include<iostream>
 #include"Player.h"
-#include"EarthWorm.h"
 using namespace std;
 class DisplayMaker
 {
 	string startDisp, homeDisp, townDisp, forestDisp;
 	Player* pp;
 	bool isOut = false;
-	EarthWorm* earthWorms;
+	Player* mp;
 public:
 	DisplayMaker(Player* player);
 	string GetStartDisp();
@@ -20,5 +19,5 @@ public:
 	string GetTownDisp();
 	void GoHome();
 	void GoForest();
-	string GetForestDisp();
+	string GetForestDisp(Player monster[]);
 };

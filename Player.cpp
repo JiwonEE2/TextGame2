@@ -39,7 +39,7 @@ void Player::SetPosition(int n)
 		if (y <= 1)y = 1;
 		else if (y >= 2)y = 2;
 	}
-	else if (n == 2 || n == 3) {
+	else if (n > 1) {
 		if (x <= 0)x = 0;
 		else if (x >= 16)x = 16;
 		if (y <= 1)y = 1;

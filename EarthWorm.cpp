@@ -5,8 +5,8 @@ EarthWorm::EarthWorm()
 	name = "earthWorm";
 	attack = 1;
 	health = 5;
-	x = rand() % 18 + 1;
-	y = rand() % 18 + 1;
+	x = rand() % 15 + 1;
+	y = rand() % 17 + 1;
 }
 
 void EarthWorm::Print() const

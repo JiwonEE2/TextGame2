@@ -156,7 +156,7 @@ void DisplayMaker::GoForest()
 	isOut = true;
 }
 
-string DisplayMaker::GetForestDisp()
+string DisplayMaker::GetForestDisp(Player monster[])
 {
 	forestDisp =
 		"------------------\n"
@@ -181,7 +181,11 @@ string DisplayMaker::GetForestDisp()
 		"------------------\n";
 	int x = pp->GetX();
 	int y = pp->GetY();
-	
+	for (int i = 0; i < 5; i++) {
+		int mx = monster[i].GetX();
+		int my = monster[i].GetY();
+		forestDisp.replace(mx + 20 * my, 1, "~");
+	}	
 	forestDisp.replace(x + 20 * y, 1, "*");
 	if (x == 3 && y == 6)GoHome();
 	else if (x > 15 && (y == 7 || y == 6))GoForest();

@@ -74,16 +74,17 @@ int main() {
 		// 몬스터 생성
 		srand(time(0));
 		int num = 5;
-		EarthWorm* earthWorms = new EarthWorm[num];
+		EarthWorm earthWorms[5];
 		for (int i = 0; i < num; i++) {
 			earthWorms[i].Print();
 		}
 
 		// 숲으로 가기
 		player.SetXY(1, 7);
-		string forestDisp = displayMaker.GetForestDisp();
+		string forestDisp = displayMaker.GetForestDisp(earthWorms);
 		SceneManager::GetInstance().AddScene("숲", "1. 마을로", forestDisp);
 		SceneManager::GetInstance().SetCurrentScene("숲");
+		system("cls");
 		SceneManager::GetInstance().ShowCurrentScene();
 		player.SetIsChoice(false);
 		displayMaker.SetIsOut(false);
@@ -91,7 +92,7 @@ int main() {
 		while (!player.GetIsChoice() || !displayMaker.GetIsOut()) {
 			player.SetPosition(4);
 			system("cls");
-			forestDisp = displayMaker.GetForestDisp();
+			forestDisp = displayMaker.GetForestDisp(earthWorms);
 			SceneManager::GetInstance().EditScene(forestDisp);
 			SceneManager::GetInstance().ShowCurrentScene();
 			player.InputKey();
