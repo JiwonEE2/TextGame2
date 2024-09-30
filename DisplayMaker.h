@@ -13,6 +13,7 @@ public:
 	string GetHomeDisp();
 	void IsBed()const;
 	bool GetIsOut();
+	void SetIsOut(bool is);
 	void IsOut();
 	string GetTownDisp();
 	void GoHome();

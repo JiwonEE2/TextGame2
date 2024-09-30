@@ -102,6 +102,11 @@ bool DisplayMaker::GetIsOut()
 	return isOut;
 }
 
+void DisplayMaker::SetIsOut(bool is)
+{
+	isOut = is;
+}
+
 void DisplayMaker::IsOut()
 {
 	cout << "나가나?\n";
@@ -135,7 +140,7 @@ string DisplayMaker::GetTownDisp()
 	int y = pp->GetY();
 	townDisp.replace(x + 20 * y, 1, "*");
 	if (x == 3 && y == 4)GoHome();
-	else if (x > 15 && y == 7 || y == 6)GoForest();
+	else if (x > 15 && (y == 7 || y == 6))GoForest();
 	return townDisp;
 }
 
@@ -147,6 +152,7 @@ void DisplayMaker::GoHome()
 void DisplayMaker::GoForest()
 {
 	cout << "숲으로 가시겠습니까?\n";
+	isOut = true;
 }
 
 string DisplayMaker::GetForestDisp()
