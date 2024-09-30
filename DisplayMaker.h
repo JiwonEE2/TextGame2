@@ -7,7 +7,7 @@ class DisplayMaker
 	string startDisp, homeDisp, townDisp, forestDisp;
 	Player* pp;
 	bool isOut = false;
-	Player* mp;
+	Player mp[5];
 public:
 	DisplayMaker(Player* player);
 	string GetStartDisp();
@@ -20,4 +20,5 @@ public:
 	void GoHome();
 	void GoForest();
 	string GetForestDisp(Player monster[]);
+	void MonsterAttack(int i);
 };

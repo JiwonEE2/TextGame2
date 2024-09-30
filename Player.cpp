@@ -6,9 +6,11 @@ Player::Player(const string& name)
 	this->name = name;
 	x = 1, y = 1;
 	isChoice = false;
-	attack = 10;
-	health = 100;
+	attack = 5;
+	health = 50;
+	maxHealth = 50;
 	experience = 0;
+	maxExperience = 1000;
 	level = 1;
 }
 
@@ -92,6 +94,20 @@ void Player::InputKey()
 	}
 }
 
+void Player::PrintStatus() const
+{
+	cout << "=============== " << name << " (Lv. "<<level<<") =============== \n";
+	cout << "체력 : " << health << "/" << maxHealth << "\n";
+	cout << "공격력 : " << attack << "\n";
+	cout << "경험치 : " << experience << "/" << maxExperience << "\n";
+	cout << "=========================================== \n";
+}
+
+int Player::GetAttack()
+{
+	return attack;
+}
+
 void Player::LevelUp() const
 {
 }
@@ -100,8 +116,9 @@ void Player::Attack() const
 {
 }
 
-void Player::Attacked() const
+void Player::Attacked(Player other)
 {
+	health -= other.GetAttack();
 }
 
 void Player::Print() const

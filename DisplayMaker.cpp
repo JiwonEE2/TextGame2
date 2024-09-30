@@ -181,13 +181,29 @@ string DisplayMaker::GetForestDisp(Player monster[])
 		"------------------\n";
 	int x = pp->GetX();
 	int y = pp->GetY();
+	int mx[5], my[5];
 	for (int i = 0; i < 5; i++) {
-		int mx = monster[i].GetX();
-		int my = monster[i].GetY();
-		forestDisp.replace(mx + 20 * my, 1, "~");
-	}	
+		mp[i] = monster[i];
+		mx[i] = mp[i].GetX();
+		my[i] = mp[i].GetY();
+		forestDisp.replace(mx[i] + 20 * my[i], 1, "~");
+	}
 	forestDisp.replace(x + 20 * y, 1, "*");
+	for (int i = 0; i < 5; i++) {
+		MonsterAttack(i);
+	}
 	if (x == 3 && y == 6)GoHome();
 	else if (x > 15 && (y == 7 || y == 6))GoForest();
 	return forestDisp;
+}
+
+void DisplayMaker::MonsterAttack(int i)
+{
+	if (mp[i].GetX() - pp->GetX() <= 1
+		&& mp[i].GetX() - pp->GetX() >= -1
+		&& mp[i].GetY() - pp->GetY() <= 1
+		&& mp[i].GetY() - pp->GetY() >= -1) {
+		cout << i << "번째 지렁이에게 맞았습니다\n";
+		pp->Attacked(mp[i]);
+	}
 }

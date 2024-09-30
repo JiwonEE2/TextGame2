@@ -95,6 +95,7 @@ int main() {
 			forestDisp = displayMaker.GetForestDisp(earthWorms);
 			SceneManager::GetInstance().EditScene(forestDisp);
 			SceneManager::GetInstance().ShowCurrentScene();
+			player.PrintStatus();
 			player.InputKey();
 		}
 	}
