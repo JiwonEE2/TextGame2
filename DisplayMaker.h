@@ -6,7 +6,7 @@ class DisplayMaker
 {
 	string startDisp, homeDisp, townDisp, forestDisp;
 	Player* pp;
-	bool isOut;
+	bool isOut = false;
 public:
 	DisplayMaker(Player* player);
 	string GetStartDisp();
