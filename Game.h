@@ -8,18 +8,24 @@ class Game
 	string startDisp, homeDisp, townDisp, forestDisp;
 	Player* pp;
 	int go;
+	int homeToTown[2] = { 7,17 };
+	int townToHome[2] = { 3,4 };
+	int townToForest[2] = { 16,7 };
+	int forestToTown[2] = { 1,7 };
 	EarthWorm* mp[];
 public:
 	Game(Player* player);
+	~Game();
 	string GetStartDisp();
 	string GetHomeDisp();
-	void IsBed()const;
-	void GoTown();
 	string GetTownDisp();
+	string GetForestDisp(EarthWorm monster[]);
 	void GoHome();
+	void GoTown();
 	void GoForest();
-	string GetForestDisp(EarthWorm ew[]);
-	void MonsterAttack(int i);
 	int GetGo()const;
 	void SetGo(int go);
+
+	void IsBed()const;
+	void MonsterAttack(int i);
 };

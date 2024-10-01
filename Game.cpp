@@ -5,62 +5,12 @@
 Game::Game(Player* player)
 {
 	pp = player;
-	go = 1;
-	// 0123~20
-	// 21,22~2개
-	// 41,42~2개
+	go = 3;
 	startDisp =
 		"-------------------\n"
 		"   새 게임\n"
 		"   게임 종료\n"
 		"-------------------\n";
-	homeDisp =
-		"------------------\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"|                 |\n"
-		"------------------\n";
-	townDisp =
-		"--------\n"
-		"|town	|\n"
-		"--------\n";
-	forestDisp =
-		"--------\n"
-		"|forest|\n"
-		"--------\n";
-}
-
-string Game::GetStartDisp()
-{
-	int n = pp->GetY();
-	if (n == 1) {
-		startDisp.replace(21, 1, "*");
-		startDisp.replace(32, 1, " ");
-	}
-	else {
-		startDisp.replace(21, 1, " ");
-		startDisp.replace(32, 1, "*");
-	}
-	return startDisp;
-}
-
-string Game::GetHomeDisp()
-{
 	homeDisp =
 		"------------------\n"
 		"|                 |\n"
@@ -82,31 +32,6 @@ string Game::GetHomeDisp()
 		"|                 |\n"
 		"|    | OUT |      |\n"
 		"------------------\n";
-	int x = pp->GetX();
-	int y = pp->GetY();
-	homeDisp.replace(x + 20 * y, 1, "*");
-	if (x > 4 && x < 11 && y > 5 && y < 8)IsBed();
-	else if (x > 4 && x < 10 && y > 17)GoTown();
-	return homeDisp;
-}
-
-void Game::IsBed() const
-{
-	if (pp->GetIsChoice() == true) {
-		cout << "잠을 잡니다...\n";
-		pp->SetIsChoice(false);
-	}
-	cout << "Go to Sleep?\n";
-}
-
-void Game::GoTown()
-{
-	go = 2;
-	cout << "마을로 가시겠습니까?\n";
-}
-
-string Game::GetTownDisp()
-{
 	townDisp =
 		"------------------\n"
 		"|       |  |      |\n"
@@ -128,28 +53,6 @@ string Game::GetTownDisp()
 		"|       |  |      |\n"
 		"|       |  |      |\n"
 		"------------------\n";
-	int x = pp->GetX();
-	int y = pp->GetY();
-	townDisp.replace(x + 20 * y, 1, "*");
-	if (x == 3 && y == 4)GoHome();
-	else if (x > 15 && (y == 7 || y == 6))GoForest();
-	return townDisp;
-}
-
-void Game::GoHome()
-{
-	go = 1;
-	cout << "집으로 가시겠습니까?\n";
-}
-
-void Game::GoForest()
-{
-	go = 3;
-	cout << "숲으로 가시겠습니까?\n";
-}
-
-string Game::GetForestDisp(EarthWorm monster[])
-{
 	forestDisp =
 		"------------------\n"
 		"|       |  |      |\n"
@@ -171,22 +74,111 @@ string Game::GetForestDisp(EarthWorm monster[])
 		"|       |  |      |\n"
 		"|       |  |      |\n"
 		"------------------\n";
+}
+
+Game::~Game()
+{
+	delete pp;
+	delete[] * mp;
+	pp = nullptr;
+	*mp = nullptr;
+}
+
+string Game::GetStartDisp()
+{
+	string display = startDisp;
+	int n = pp->GetY();
+	if (n == 1) {
+		display.replace(21, 1, "*");
+	}
+	else {
+		display.replace(32, 1, "*");
+	}
+	return display;
+}
+
+string Game::GetHomeDisp()
+{
+	string display = homeDisp;
 	int x = pp->GetX();
 	int y = pp->GetY();
+	display.replace(homeToTown[0] + homeToTown[1] * 20, 1, "0");
+	display.replace(x + 20 * y, 1, "*");
+	if (x > 4 && x < 11 && y > 5 && y < 8)IsBed();
+	else if (x == homeToTown[0] && y == homeToTown[1])GoTown();
+	return display;
+}
+
+string Game::GetTownDisp()
+{
+	string display = townDisp;
+	int x = pp->GetX();
+	int y = pp->GetY();
+	display.replace(townToHome[0] + townToHome[1] * 20, 1, "0");
+	display.replace(townToForest[0] + townToForest[1] * 20, 1, "0");
+	display.replace(x + 20 * y, 1, "*");
+	if (x == townToHome[0] && y == townToHome[1])GoHome();
+	else if (x == townToForest[0] && y == townToForest[1])GoForest();
+	return display;
+}
+
+string Game::GetForestDisp(EarthWorm monster[])
+{
+	string display = forestDisp;
+	int x = pp->GetX();
+	int y = pp->GetY();
+	display.replace(forestToTown[0] + forestToTown[1] * 20, 1, "0");
 	int mx[5], my[5];
 	for (int i = 0; i < 5; i++) {
 		mp[i] = &monster[i];
 		if (mp[i]->GetIsDeath())continue;
 		mx[i] = mp[i]->GetX();
 		my[i] = mp[i]->GetY();
-		forestDisp.replace(mx[i] + 20 * my[i], 1, "~");
+		display.replace(mx[i] + 20 * my[i], 1, "~");
 	}
-	forestDisp.replace(x + 20 * y, 1, "*");
+	display.replace(x + 20 * y, 1, "*");
 	for (int i = 0; i < 5; i++) {
 		MonsterAttack(i);
 	}
-	if (x < 1 && (y == 6 || y == 7))GoTown();
-	return forestDisp;
+	if (x == forestToTown[0] && y == forestToTown[1])GoTown();
+	return display;
+}
+
+void Game::GoHome()
+{
+	go = 1;
+	cout << "집으로 가시겠습니까?\n";
+}
+
+void Game::GoTown()
+{
+	go = 2;
+	cout << "마을로 가시겠습니까?\n";
+}
+
+void Game::GoForest()
+{
+	go = 3;
+	cout << "숲으로 가시겠습니까?\n";
+}
+
+int Game::GetGo() const
+{
+	return go;
+}
+
+void Game::SetGo(int go)
+{
+	this->go = go;
+}
+
+void Game::IsBed() const
+{
+	if (pp->GetIsChoice() == true) {
+		cout << "잠을 잡니다...\n";
+		pp->SetIsChoice(false);
+	}
+	cout << "Go to Sleep?\n";
 }
 
 void Game::MonsterAttack(int i)
@@ -205,14 +197,4 @@ void Game::MonsterAttack(int i)
 			}
 		}
 	}
-}
-
-int Game::GetGo() const
-{
-	return go;
-}
-
-void Game::SetGo(int go)
-{
-	this->go = go;
 }

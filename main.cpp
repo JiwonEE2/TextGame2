@@ -28,9 +28,9 @@ int main() {
 		player.InputKey(1);
 	}
 
-	// 집에서부터 게임 시작
 	if (player.GetY() == 1) {
 		while (!player.GetIsDeath()) {
+			// 집에서부터 게임 시작
 			switch (game.GetGo()) {
 			case 1:
 				SceneManager::GetInstance().SetCurrentScene("집");
@@ -51,7 +51,7 @@ int main() {
 			case 3:
 				SceneManager::GetInstance().SetCurrentScene("숲");
 				player.SetXY(1, 7);
-				while (!player.GetIsChoice() || game.GetGo() == 3) {
+				while ((!player.GetIsChoice() || game.GetGo() == 3) && !player.GetIsDeath()) {
 					SceneManager::GetInstance().EditShowCurrentScene(game.GetForestDisp(earthWorms));
 					player.PrintStatus();
 					player.InputKey(2);
