@@ -34,14 +34,14 @@ void Player::SetIsChoice(bool is)
 	isChoice = is;
 }
 
-void Player::SetPosition(int n)
+void Player::SetMoveLine(int n)
 {
 	// 1번씬일 경우(시작 씬)
 	if (n == 1) {
 		if (y <= 1)y = 1;
 		else if (y >= 2)y = 2;
 	}
-	else if (n > 1) {
+	else {
 		if (x <= 0)x = 0;
 		else if (x >= 16)x = 16;
 		if (y <= 1)y = 1;

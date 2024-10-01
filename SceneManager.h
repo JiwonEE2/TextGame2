@@ -2,11 +2,13 @@
 #include<map>
 #include"Singleton.h"
 #include"Scene.h"
+#include"Player.h"
 
 class SceneManager :public Singleton<SceneManager>
 {
 	map<string, Scene*>scenes;
 	Scene* currentScene = nullptr;
+	Player player;
 public:
 	SceneManager();
 	~SceneManager();

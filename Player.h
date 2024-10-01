@@ -24,7 +24,7 @@ public:
 	int GetY()const;
 	bool GetIsChoice();
 	void SetIsChoice(bool is);
-	void SetPosition(int n);
+	void SetMoveLine(int n);
 	void SetXY(int x, int y);
 	void InputKey();
 	void PrintStatus()const;
