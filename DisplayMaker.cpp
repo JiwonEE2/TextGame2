@@ -184,6 +184,7 @@ string DisplayMaker::GetForestDisp(EarthWorm monster[])
 	int mx[5], my[5];
 	for (int i = 0; i < 5; i++) {
 		mp[i] = &monster[i];
+		if (mp[i]->GetIsDeath())continue;
 		mx[i] = mp[i]->GetX();
 		my[i] = mp[i]->GetY();
 		forestDisp.replace(mx[i] + 20 * my[i], 1, "~");
@@ -203,13 +204,16 @@ void DisplayMaker::MonsterAttack(int i)
 		&& mp[i]->GetX() - pp->GetX() >= -1
 		&& mp[i]->GetY() - pp->GetY() <= 1
 		&& mp[i]->GetY() - pp->GetY() >= -1) {
-		cout << i << "번째 지렁이에게 맞았습니다\n";
-		pp->Attacked(mp[i]);
-		if (pp->GetPressAttack()) {
-			mp[i]->Attacked(pp);
-			cout << i << "번째 지렁이를 때렸다!\n";
-			cout << "지렁이 남은 체력 : " << mp[i]->GetHealth() << "\n";
-			pp->SetPressAttack(false);
-		}
+		if (!mp[i]->GetIsDeath()) {
+			cout << i << "번째 지렁이에게 맞았습니다\n";
+			pp->Attacked(mp[i]);
+			if (pp->GetPressAttack()) {
+				mp[i]->Attacked(pp);
+				cout << i << "번째 지렁이를 때렸다!\n";
+				cout << "지렁이 남은 체력 : " << mp[i]->GetHealth() << "\n";
+				pp->SetPressAttack(false);
+				mp[i]->DeathCheck();
+			}
+		}		
 	}
 }

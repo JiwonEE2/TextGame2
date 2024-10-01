@@ -97,7 +97,7 @@ void Player::InputKey()
 
 void Player::PrintStatus() const
 {
-	cout << "=============== " << name << " (Lv. "<<level<<") =============== \n";
+	cout << "=============== " << name << " (Lv. " << level << ") =============== \n";
 	cout << "체력 : " << health << "/" << maxHealth << "\n";
 	cout << "공격력 : " << attack << "\n";
 	cout << "경험치 : " << experience << "/" << maxExperience << "\n";
@@ -112,6 +112,24 @@ int Player::GetAttack()
 int Player::GetHealth()
 {
 	return health;
+}
+
+bool Player::GetIsDeath() const
+{
+	return isDeath;
+}
+
+void Player::SetIsDeath(bool is)
+{
+	isDeath = is;
+}
+
+void Player::DeathCheck()
+{
+	if (health <= 0) {
+		cout << name << "은 사망했습니다\n";
+		isDeath = true;
+	}
 }
 
 void Player::LevelUp() const

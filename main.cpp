@@ -8,7 +8,7 @@ int main() {
 	DisplayMaker displayMaker(&player);
 	string startDisp = displayMaker.GetStartDisp();
 	string homeDisp;
-	
+
 	SceneManager::GetInstance().AddScene("집", "1. 회복, 2. 마을로", homeDisp);
 
 	player.SetPosition(1);
@@ -97,6 +97,8 @@ int main() {
 			SceneManager::GetInstance().EditScene(forestDisp);
 			SceneManager::GetInstance().ShowCurrentScene();
 			player.PrintStatus();
+			player.DeathCheck();
+			if (player.GetIsDeath())break;
 			player.InputKey();
 		}
 	}

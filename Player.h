@@ -16,6 +16,7 @@ protected:
 	int attack;
 	int health;
 	int maxHealth;
+	bool isDeath = false;
 public:
 	Player() {}
 	Player(const string& name);
@@ -29,6 +30,9 @@ public:
 	void PrintStatus()const;
 	int GetAttack();
 	int GetHealth();
+	bool GetIsDeath()const;
+	void SetIsDeath(bool is);
+	void DeathCheck();
 	void LevelUp()const;
 	bool GetPressAttack()const;
 	void SetPressAttack(bool is);
