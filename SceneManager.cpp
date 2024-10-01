@@ -17,7 +17,6 @@ void SceneManager::AddScene(const string& name, const string& desc)
 
 void SceneManager::SetCurrentScene(const string& name)
 {
-	player.SetIsChoice(false);
 	if (scenes.find(name) != scenes.end()) {
 		currentScene = scenes[name];
 		cout << "현재 씬을 " << name << "으로 설정하였습니다.\n";

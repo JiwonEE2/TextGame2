@@ -53,6 +53,27 @@ Game::Game(Player* player)
 		"|       |  |      |\n"
 		"|       |  |      |\n"
 		"------------------\n";
+	shopDisp =
+		"------------------\n"
+		"|     SHOP        |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"------------------\n";
 	forestDisp =
 		"------------------\n"
 		"|       |  |      |\n"
@@ -106,6 +127,7 @@ string Game::GetHomeDisp()
 	display.replace(x + 20 * y, 1, "*");
 	if (x > 4 && x < 11 && y > 5 && y < 8)IsBed();
 	else if (x == homeToTown[0] && y == homeToTown[1])GoTown();
+	else go = 1;
 	return display;
 }
 
@@ -115,10 +137,25 @@ string Game::GetTownDisp()
 	int x = pp->GetX();
 	int y = pp->GetY();
 	display.replace(townToHome[0] + townToHome[1] * 20, 1, "0");
+	display.replace(townToShop[0] + townToShop[1] * 20, 1, "0");
 	display.replace(townToForest[0] + townToForest[1] * 20, 1, "0");
 	display.replace(x + 20 * y, 1, "*");
 	if (x == townToHome[0] && y == townToHome[1])GoHome();
+	else if (x == townToShop[0] && y == townToShop[1])GoShop();
 	else if (x == townToForest[0] && y == townToForest[1])GoForest();
+	else go = 2;
+	return display;
+}
+
+string Game::GetShopDisp()
+{
+	string display = shopDisp;
+	int x = pp->GetX();
+	int y = pp->GetY();
+	display.replace(shopToTown[0] + shopToTown[1] * 20, 1, "0");
+	display.replace(x + 20 * y, 1, "*");
+	if (x == shopToTown[0] && y == shopToTown[1])GoTown();
+	else go = 3;
 	return display;
 }
 
@@ -141,6 +178,7 @@ string Game::GetForestDisp(EarthWorm monster[])
 		MonsterAttack(i);
 	}
 	if (x == forestToTown[0] && y == forestToTown[1])GoTown();
+	else go = 4;
 	return display;
 }
 
@@ -156,9 +194,15 @@ void Game::GoTown()
 	cout << "마을로 가시겠습니까?\n";
 }
 
-void Game::GoForest()
+void Game::GoShop()
 {
 	go = 3;
+	cout << "상점으로 가시겠습니까?\n";
+}
+
+void Game::GoForest()
+{
+	go = 4;
 	cout << "숲으로 가시겠습니까?\n";
 }
 
@@ -177,6 +221,7 @@ void Game::IsBed() const
 	if (pp->GetIsChoice() == true) {
 		cout << "잠을 잡니다...\n";
 		pp->SetIsChoice(false);
+		pp->Heal();
 	}
 	cout << "Go to Sleep?\n";
 }

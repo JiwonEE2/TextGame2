@@ -9,5 +9,6 @@ class Scene
 	string disp;
 public:
 	Scene(const string& name, const string& desc) :name(name), desc(desc) {}
+	string GetName();
 	void SetPrintDisplay(const string& display);
 };

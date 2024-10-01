@@ -1,5 +1,10 @@
 #include "Scene.h"
 
+string Scene::GetName()
+{
+	return name;
+}
+
 void Scene::SetPrintDisplay(const string& display)
 {
 	disp = display;

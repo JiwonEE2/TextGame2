@@ -8,7 +8,6 @@ class SceneManager :public Singleton<SceneManager>
 {
 	map<string, Scene*>scenes;
 	Scene* currentScene = nullptr;
-	Player player;
 public:
 	SceneManager();
 	~SceneManager();

@@ -163,3 +163,8 @@ void Player::Print() const
 {
 	cout << name << "가 x : " << x << ", y : " << y << "에 생성되었습니다.\n";
 }
+
+void Player::Heal()
+{
+	health = maxHealth;
+}

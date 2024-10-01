@@ -36,4 +36,5 @@ public:
 	void SetPressAttack(bool is);
 	void Attacked(Player* other);
 	virtual void Print()const;
+	void Heal();
 };
