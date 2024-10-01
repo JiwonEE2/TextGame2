@@ -12,8 +12,7 @@ class SceneManager :public Singleton<SceneManager>
 public:
 	SceneManager();
 	~SceneManager();
-	void AddScene(const string& name, const string& desc, const string& disp);
+	void AddScene(const string& name, const string& desc);
 	void SetCurrentScene(const string& name);
-	void ShowCurrentScene()const;
-	void EditScene(const string& display);
+	void EditShowCurrentScene(const string& display);
 };

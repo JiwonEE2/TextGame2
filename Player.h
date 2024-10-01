@@ -24,15 +24,13 @@ public:
 	int GetY()const;
 	bool GetIsChoice();
 	void SetIsChoice(bool is);
-	void SetMoveLine(int n);
 	void SetXY(int x, int y);
-	void InputKey();
+	void InputKey(int n);
 	void PrintStatus()const;
 	int GetAttack();
 	int GetHealth();
-	bool GetIsDeath()const;
+	bool GetIsDeath();
 	void SetIsDeath(bool is);
-	void DeathCheck();
 	void LevelUp()const;
 	bool GetPressAttack()const;
 	void SetPressAttack(bool is);

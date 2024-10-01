@@ -34,28 +34,13 @@ void Player::SetIsChoice(bool is)
 	pressEnter = is;
 }
 
-void Player::SetMoveLine(int n)
-{
-	// 1번씬일 경우(시작 씬)
-	if (n == 1) {
-		if (y <= 1)y = 1;
-		else if (y >= 2)y = 2;
-	}
-	else {
-		if (x <= 0)x = 0;
-		else if (x >= 16)x = 16;
-		if (y <= 1)y = 1;
-		else if (y >= 18)y = 18;
-	}
-}
-
 void Player::SetXY(int x, int y)
 {
 	this->x = x;
 	this->y = y;
 }
 
-void Player::InputKey()
+void Player::InputKey(int n)
 {
 	pressAttack = false;
 	pressEnter = false;
@@ -95,6 +80,20 @@ void Player::InputKey()
 		pressAttack = true;
 		break;
 	}
+
+	// 1번씬일 경우(시작 씬)
+	if (n == 1) {
+		if (y <= 1)y = 1;
+		else if (y >= 2)y = 2;
+	}
+	else {
+		if (x <= 0)x = 0;
+		else if (x >= 16)x = 16;
+		if (y <= 1)y = 1;
+		else if (y >= 18)y = 18;
+	}
+
+	system("cls");
 }
 
 void Player::PrintStatus() const
@@ -116,22 +115,17 @@ int Player::GetHealth()
 	return health;
 }
 
-bool Player::GetIsDeath() const
+bool Player::GetIsDeath()
 {
+	if (health <= 0) {
+		isDeath = true;
+	}
 	return isDeath;
 }
 
 void Player::SetIsDeath(bool is)
 {
 	isDeath = is;
-}
-
-void Player::DeathCheck()
-{
-	if (health <= 0) {
-		cout << name << "은 사망했습니다\n";
-		isDeath = true;
-	}
 }
 
 void Player::LevelUp() const

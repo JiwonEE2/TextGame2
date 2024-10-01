@@ -10,9 +10,9 @@ SceneManager::~SceneManager()
 		delete pair.second;
 }
 
-void SceneManager::AddScene(const string& name, const string& desc, const string& disp)
+void SceneManager::AddScene(const string& name, const string& desc)
 {
-	scenes[name] = new Scene(name, desc, disp);
+	scenes[name] = new Scene(name, desc);
 }
 
 void SceneManager::SetCurrentScene(const string& name)
@@ -25,15 +25,10 @@ void SceneManager::SetCurrentScene(const string& name)
 	else { cout << "씬을 찾을 수 없습니다.\n"; }
 }
 
-void SceneManager::ShowCurrentScene() const
+void SceneManager::EditShowCurrentScene(const string& display)
 {
 	if (currentScene) {
-		currentScene->Print();
+		currentScene->SetPrintDisplay(display);
 	}
 	else { cout << "설정된 씬이 없습니다.\n"; }
-}
-
-void SceneManager::EditScene(const string& display)
-{
-	currentScene->SetDisplay(display);
 }
