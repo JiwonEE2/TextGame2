@@ -1,9 +1,10 @@
 #include "Player.h"
 #include<conio.h>
+#include<Windows.h>
 
-Player::Player(const string& name)
+Player::Player()
 {
-	this->name = name;
+	name = "New Player";
 	x = 1, y = 1;
 	pressEnter = false;
 	attack = 3;
@@ -12,6 +13,17 @@ Player::Player(const string& name)
 	experience = 0;
 	maxExperience = 1000;
 	level = 1;
+}
+
+void Player::SetPlayerName()
+{
+	string n;
+	cout << "당신의 이름은 : ";
+	cin >> n;
+	name = n;
+	cout << name << "이라는 이름은 참 좋습니다^^\n";
+	Sleep(2000);
+	system("cls");
 }
 
 int Player::GetX() const

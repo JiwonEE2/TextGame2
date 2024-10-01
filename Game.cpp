@@ -5,7 +5,7 @@
 Game::Game(Player* player)
 {
 	pp = player;
-	go = 3;
+	go = 1;
 	startDisp =
 		"-------------------\n"
 		"   ªı ∞‘¿”\n"

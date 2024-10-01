@@ -4,7 +4,7 @@
 #include"EarthWorm.h"
 
 int main() {
-	Player player("Dori");
+	Player player;
 	Game game(&player);
 
 	// 몬스터 생성
@@ -29,6 +29,8 @@ int main() {
 	}
 
 	if (player.GetY() == 1) {
+		// 이름 정하는 화면
+		player.SetPlayerName();
 		while (!player.GetIsDeath()) {
 			// 집에서부터 게임 시작
 			switch (game.GetGo()) {

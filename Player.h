@@ -18,8 +18,8 @@ protected:
 	int maxHealth;
 	bool isDeath = false;
 public:
-	Player() {}
-	Player(const string& name);
+	Player();
+	void SetPlayerName();
 	int GetX()const;
 	int GetY()const;
 	bool GetIsChoice();
