@@ -5,7 +5,7 @@ Player::Player(const string& name)
 {
 	this->name = name;
 	x = 1, y = 1;
-	isChoice = false;
+	pressEnter = false;
 	attack = 3;
 	health = 20;
 	maxHealth = 20;
@@ -26,12 +26,12 @@ int Player::GetY() const
 
 bool Player::GetIsChoice()
 {
-	return isChoice;
+	return pressEnter;
 }
 
 void Player::SetIsChoice(bool is)
 {
-	isChoice = is;
+	pressEnter = is;
 }
 
 void Player::SetMoveLine(int n)
@@ -57,12 +57,14 @@ void Player::SetXY(int x, int y)
 
 void Player::InputKey()
 {
+	pressAttack = false;
+	pressEnter = false;
 	key = _getch();
 	switch (key) {
 		// enter, spacebar
 	case 13:
 	case 32:
-		isChoice = true;
+		pressEnter = true;
 		cout << "엔터를 쳤다\n";
 		break;
 		// 대,소문자 허용

@@ -211,7 +211,6 @@ void Game::MonsterAttack(int i)
 				mp[i]->Attacked(pp);
 				cout << i << "¹øÂ° Áö··ÀÌ¸¦ ¶§·È´Ù!\n";
 				cout << "Áö··ÀÌ ³²Àº Ã¼·Â : " << mp[i]->GetHealth() << "\n";
-				pp->SetPressAttack(false);
 				mp[i]->DeathCheck();
 			}
 		}		

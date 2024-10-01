@@ -4,7 +4,7 @@ using namespace std;
 
 class Player
 {
-	bool isChoice;
+	bool pressEnter;
 	char key;
 	int experience;
 	int maxExperience;
