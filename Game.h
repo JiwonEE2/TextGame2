@@ -3,14 +3,14 @@
 #include"Player.h"
 #include"EarthWorm.h"
 using namespace std;
-class DisplayMaker
+class Game
 {
 	string startDisp, homeDisp, townDisp, forestDisp;
 	Player* pp;
 	bool isOut = false;
 	EarthWorm* mp[];
 public:
-	DisplayMaker(Player* player);
+	Game(Player* player);
 	string GetStartDisp();
 	string GetHomeDisp();
 	void IsBed()const;

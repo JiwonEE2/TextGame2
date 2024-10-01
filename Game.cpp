@@ -1,8 +1,8 @@
-#include"DisplayMaker.h"
+#include"Game.h"
 #include"Player.h"
 #include"Monster.h"
 
-DisplayMaker::DisplayMaker(Player* player)
+Game::Game(Player* player)
 {
 	pp = player;
 	// 0123~20
@@ -44,7 +44,7 @@ DisplayMaker::DisplayMaker(Player* player)
 		"--------\n";
 }
 
-string DisplayMaker::GetStartDisp()
+string Game::GetStartDisp()
 {
 	int n = pp->GetY();
 	if (n == 1) {
@@ -58,7 +58,7 @@ string DisplayMaker::GetStartDisp()
 	return startDisp;
 }
 
-string DisplayMaker::GetHomeDisp()
+string Game::GetHomeDisp()
 {
 	homeDisp =
 		"------------------\n"
@@ -89,7 +89,7 @@ string DisplayMaker::GetHomeDisp()
 	return homeDisp;
 }
 
-void DisplayMaker::IsBed() const
+void Game::IsBed() const
 {
 	if (pp->GetIsChoice() == true) {
 		cout << "잠을 잡니다...\n";
@@ -98,23 +98,23 @@ void DisplayMaker::IsBed() const
 	cout << "Go to Sleep?\n";
 }
 
-bool DisplayMaker::GetIsOut()
+bool Game::GetIsOut()
 {
 	return isOut;
 }
 
-void DisplayMaker::SetIsOut(bool is)
+void Game::SetIsOut(bool is)
 {
 	isOut = is;
 }
 
-void DisplayMaker::IsOut()
+void Game::IsOut()
 {
 	cout << "나가나?\n";
 	isOut = true;
 }
 
-string DisplayMaker::GetTownDisp()
+string Game::GetTownDisp()
 {
 	townDisp =
 		"------------------\n"
@@ -145,18 +145,18 @@ string DisplayMaker::GetTownDisp()
 	return townDisp;
 }
 
-void DisplayMaker::GoHome()
+void Game::GoHome()
 {
 	cout << "집으로 가시겠습니까?\n";
 }
 
-void DisplayMaker::GoForest()
+void Game::GoForest()
 {
 	cout << "숲으로 가시겠습니까?\n";
 	isOut = true;
 }
 
-string DisplayMaker::GetForestDisp(EarthWorm monster[])
+string Game::GetForestDisp(EarthWorm monster[])
 {
 	forestDisp =
 		"------------------\n"
@@ -198,7 +198,7 @@ string DisplayMaker::GetForestDisp(EarthWorm monster[])
 	return forestDisp;
 }
 
-void DisplayMaker::MonsterAttack(int i)
+void Game::MonsterAttack(int i)
 {
 	if (mp[i]->GetX() - pp->GetX() <= 1
 		&& mp[i]->GetX() - pp->GetX() >= -1
