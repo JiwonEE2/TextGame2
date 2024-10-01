@@ -7,19 +7,19 @@ class Game
 {
 	string startDisp, homeDisp, townDisp, forestDisp;
 	Player* pp;
-	bool isOut = false;
+	int go;
 	EarthWorm* mp[];
 public:
 	Game(Player* player);
 	string GetStartDisp();
 	string GetHomeDisp();
 	void IsBed()const;
-	bool GetIsOut();
-	void SetIsOut(bool is);
-	void IsOut();
+	void GoTown();
 	string GetTownDisp();
 	void GoHome();
 	void GoForest();
 	string GetForestDisp(EarthWorm ew[]);
 	void MonsterAttack(int i);
+	int GetGo()const;
+	void SetGo(int go);
 };

@@ -20,7 +20,7 @@ int main() {
 	SceneManager::GetInstance().AddScene("집", "1. 회복, 2. 마을로");
 	SceneManager::GetInstance().AddScene("마을", "1. 집으로, 2. 숲으로");
 	SceneManager::GetInstance().AddScene("숲", "1. 마을로");
-	
+
 	// 시작화면
 	SceneManager::GetInstance().SetCurrentScene("시작");
 	while (!player.GetIsChoice()) {
@@ -28,36 +28,36 @@ int main() {
 		player.InputKey(1);
 	}
 
-	while (true) {
-		// 집
-		if (player.GetY() == 1) {
-			SceneManager::GetInstance().SetCurrentScene("집");
-			player.SetXY(9, 13);
-			game.SetIsOut(false);
-			while (!player.GetIsChoice() || !game.GetIsOut()) {
-				SceneManager::GetInstance().EditShowCurrentScene(game.GetHomeDisp());
-				player.InputKey(2);
-			}
-
-			// 마을화면
-			SceneManager::GetInstance().SetCurrentScene("마을");
-			player.SetXY(3, 5);
-			game.SetIsOut(false);
-			while (!player.GetIsChoice() || !game.GetIsOut()) {
-				SceneManager::GetInstance().EditShowCurrentScene(game.GetTownDisp());
-				player.InputKey(2);
-			}
-
-			// 숲으로 가기
-			SceneManager::GetInstance().SetCurrentScene("숲");
-			player.SetXY(1, 7);
-			game.SetIsOut(false);
-			while ((!player.GetIsChoice() || !game.GetIsOut()) && !player.GetIsDeath()) {
-				SceneManager::GetInstance().EditShowCurrentScene(game.GetForestDisp(earthWorms));
-				player.PrintStatus();
-				player.InputKey(2);
+	// 집에서부터 게임 시작
+	if (player.GetY() == 1) {
+		while (!player.GetIsDeath()) {
+			switch (game.GetGo()) {
+			case 1:
+				SceneManager::GetInstance().SetCurrentScene("집");
+				player.SetXY(9, 10);
+				while (!player.GetIsChoice() || game.GetGo() == 1) {
+					SceneManager::GetInstance().EditShowCurrentScene(game.GetHomeDisp());
+					player.InputKey(2);
+				}
+				break;
+			case 2:
+				SceneManager::GetInstance().SetCurrentScene("마을");
+				player.SetXY(3, 5);
+				while (!player.GetIsChoice() || game.GetGo() == 2) {
+					SceneManager::GetInstance().EditShowCurrentScene(game.GetTownDisp());
+					player.InputKey(2);
+				}
+				break;
+			case 3:
+				SceneManager::GetInstance().SetCurrentScene("숲");
+				player.SetXY(1, 7);
+				while (!player.GetIsChoice() || game.GetGo() == 3) {
+					SceneManager::GetInstance().EditShowCurrentScene(game.GetForestDisp(earthWorms));
+					player.PrintStatus();
+					player.InputKey(2);
+				}
+				break;
 			}
 		}
-		break;
 	}
 }

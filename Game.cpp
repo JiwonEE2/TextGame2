@@ -5,6 +5,7 @@
 Game::Game(Player* player)
 {
 	pp = player;
+	go = 1;
 	// 0123~20
 	// 21,22~2개
 	// 41,42~2개
@@ -85,7 +86,7 @@ string Game::GetHomeDisp()
 	int y = pp->GetY();
 	homeDisp.replace(x + 20 * y, 1, "*");
 	if (x > 4 && x < 11 && y > 5 && y < 8)IsBed();
-	else if (x > 4 && x < 10 && y > 17)IsOut();
+	else if (x > 4 && x < 10 && y > 17)GoTown();
 	return homeDisp;
 }
 
@@ -98,20 +99,10 @@ void Game::IsBed() const
 	cout << "Go to Sleep?\n";
 }
 
-bool Game::GetIsOut()
+void Game::GoTown()
 {
-	return isOut;
-}
-
-void Game::SetIsOut(bool is)
-{
-	isOut = is;
-}
-
-void Game::IsOut()
-{
-	cout << "나가나?\n";
-	isOut = true;
+	go = 2;
+	cout << "마을로 가시겠습니까?\n";
 }
 
 string Game::GetTownDisp()
@@ -147,13 +138,14 @@ string Game::GetTownDisp()
 
 void Game::GoHome()
 {
+	go = 1;
 	cout << "집으로 가시겠습니까?\n";
 }
 
 void Game::GoForest()
 {
+	go = 3;
 	cout << "숲으로 가시겠습니까?\n";
-	isOut = true;
 }
 
 string Game::GetForestDisp(EarthWorm monster[])
@@ -165,7 +157,7 @@ string Game::GetForestDisp(EarthWorm monster[])
 		"|       |  |      |\n"
 		"|       |  |      |\n"
 		"|_______|  |______|\n"
-		"|home             |\n"
+		"|town             |\n"
 		"|_______    ______|\n"
 		"|       |  |      |\n"
 		"|       |  |   /\\ |\n"
@@ -193,8 +185,7 @@ string Game::GetForestDisp(EarthWorm monster[])
 	for (int i = 0; i < 5; i++) {
 		MonsterAttack(i);
 	}
-	if (x == 3 && y == 6)GoHome();
-	else if (x > 15 && (y == 7 || y == 6))GoForest();
+	if (x < 1 && (y == 6 || y == 7))GoTown();
 	return forestDisp;
 }
 
@@ -212,6 +203,16 @@ void Game::MonsterAttack(int i)
 				cout << i << "번째 지렁이를 때렸다!\n";
 				cout << "지렁이 남은 체력 : " << mp[i]->GetHealth() << "\n";
 			}
-		}		
+		}
 	}
+}
+
+int Game::GetGo() const
+{
+	return go;
+}
+
+void Game::SetGo(int go)
+{
+	this->go = go;
 }
