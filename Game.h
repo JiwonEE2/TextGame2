@@ -17,6 +17,9 @@ class Game
 	int townToForest[2] = { 16,7 };
 	int shopToTown[2] = { 16,16 };
 	int forestToTown[2] = { 1,7 };
+	int quest[2] = { 13,4 };
+	int qMoney = 10000, qNow = 0, qAll = 5;
+	bool qComplete = false;
 	EarthWorm* mp[];
 public:
 	Game(Player* player);
@@ -30,6 +33,7 @@ public:
 	void GoTown();
 	void GoShop();
 	void GoForest();
+	void Quest();
 	void PrintItem(int i);
 	Go GetGo()const;
 	void SetGo(Go go);

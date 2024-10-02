@@ -5,7 +5,7 @@ Game::Game(Player* player)
 {
 	pp = player;
 	// start 씬 다음 화면
-	go = Go::SHOP;
+	go = Go::TOWN;
 	startDisp =
 		"-------------------\n"
 		"   새 게임\n"
@@ -36,7 +36,7 @@ Game::Game(Player* player)
 		"------------------\n"
 		"|       |  |      |\n"
 		"| home  |  |      |\n"
-		"|  /_\\  |  |      |\n"
+		"|  /_\\  |  | quest|\n"
 		"|  |_|  |  |      |\n"
 		"|_______|  |______|\n"
 		"|           forest|\n"
@@ -138,11 +138,13 @@ string Game::GetTownDisp()
 	int y = pp->GetY();
 	display.replace(townToHome[0] + townToHome[1] * 20, 1, "0");
 	display.replace(townToShop[0] + townToShop[1] * 20, 1, "0");
+	display.replace(quest[0] + quest[1] * 20, 1, "0");
 	display.replace(townToForest[0] + townToForest[1] * 20, 1, "0");
 	display.replace(x + 20 * y, 1, "*");
 	if (x == townToHome[0] && y == townToHome[1])GoHome();
 	else if (x == townToShop[0] && y == townToShop[1])GoShop();
 	else if (x == townToForest[0] && y == townToForest[1])GoForest();
+	else if (x == quest[0] && y == quest[1])Quest();
 	else go = Go::TOWN;
 	return display;
 }
@@ -216,6 +218,25 @@ void Game::GoForest()
 	cout << "숲으로 가시겠습니까?\n";
 }
 
+void Game::Quest()
+{
+	cout << "==== 퀘스트 ====\n";
+	cout << "약한 지렁이 " << qAll << "마리를 사살하라\n";
+	cout << "보상 : " << qMoney << "원\n";
+	cout << "진행 : " << qNow << "/" << qAll << "\n";
+	if (qNow == qAll) {
+		if (!qComplete) {
+			pp->SetMoney(pp->GetMoney() + qMoney);
+			cout << "잘하셨습니다^^ " << qMoney << "원 지급ㅎ\n";
+			qComplete = true;
+		}
+		else {
+			cout << "이미 받아서 또 못받는다.\n";
+		}
+	}
+	cout << "===============\n";
+}
+
 void Game::PrintItem(int i)
 {
 	ItemManager::GetInstance().SetCurrentItem(i);
@@ -280,6 +301,7 @@ void Game::MonsterAttack(int i)
 					cout << mp[i]->GetName() << "는 사망했습니다\n";
 					pp->UpExperience(mp[i]);
 					pp->SetMoney(pp->GetMoney() + mp[i]->GetMoney());
+					qNow++;
 					cout << mp[i]->GetMoney() << "원을 주웠다!!!\n";
 				}
 			}
