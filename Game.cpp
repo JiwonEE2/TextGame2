@@ -239,6 +239,10 @@ void Game::MonsterAttack(int i)
 				mp[i]->Attacked(pp);
 				cout << i << "번째 지렁이를 때렸다!\n";
 				cout << "지렁이 남은 체력 : " << mp[i]->GetHealth() << "\n";
+				if (mp[i]->GetIsDeath()) {
+					cout << mp[i]->GetName() << "는 사망했습니다\n";
+					pp->UpExperience(mp[i]);
+				}
 			}
 		}
 	}

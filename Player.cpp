@@ -26,6 +26,11 @@ void Player::SetPlayerName()
 	system("cls");
 }
 
+string Player::GetName()
+{
+	return name;
+}
+
 int Player::GetX() const
 {
 	return x;
@@ -140,8 +145,22 @@ void Player::SetIsDeath(bool is)
 	isDeath = is;
 }
 
-void Player::LevelUp() const
+int Player::GetExperience()
 {
+	return experience;
+}
+
+void Player::UpExperience(Player* other)
+{
+	experience += other->GetExperience();
+	while (experience >= maxExperience) {
+		level++;
+		attack *= 2;
+		maxHealth *= 2;
+		health = maxHealth;
+		cout << "·¹º§¾÷ !!!!!!\n";
+		experience -= maxExperience;
+	}
 }
 
 bool Player::GetPressAttack() const

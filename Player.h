@@ -6,7 +6,6 @@ class Player
 {
 	bool pressEnter;
 	char key;
-	int experience;
 	int maxExperience;
 	int level;
 	bool pressAttack = false;
@@ -17,9 +16,11 @@ protected:
 	int health;
 	int maxHealth;
 	bool isDeath = false;
+	int experience;
 public:
 	Player();
 	void SetPlayerName();
+	string GetName();
 	int GetX()const;
 	int GetY()const;
 	bool GetIsChoice();
@@ -31,7 +32,8 @@ public:
 	int GetHealth();
 	bool GetIsDeath();
 	void SetIsDeath(bool is);
-	void LevelUp()const;
+	virtual int GetExperience();
+	void UpExperience(Player* other);
 	bool GetPressAttack()const;
 	void SetPressAttack(bool is);
 	void Attacked(Player* other);

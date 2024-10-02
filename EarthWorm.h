@@ -6,4 +6,5 @@ class EarthWorm :public Player
 public:
 	EarthWorm();
 	void Print()const override;
+	int GetExperience()override;
 };
