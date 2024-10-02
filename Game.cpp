@@ -5,7 +5,7 @@
 Game::Game(Player* player)
 {
 	pp = player;
-	go = 1;
+	go = Go::HOME;
 	startDisp =
 		"-------------------\n"
 		"   새 게임\n"
@@ -127,7 +127,7 @@ string Game::GetHomeDisp()
 	display.replace(x + 20 * y, 1, "*");
 	if (x > 4 && x < 11 && y > 5 && y < 8)IsBed();
 	else if (x == homeToTown[0] && y == homeToTown[1])GoTown();
-	else go = 1;
+	else go = Go::HOME;
 	return display;
 }
 
@@ -143,7 +143,7 @@ string Game::GetTownDisp()
 	if (x == townToHome[0] && y == townToHome[1])GoHome();
 	else if (x == townToShop[0] && y == townToShop[1])GoShop();
 	else if (x == townToForest[0] && y == townToForest[1])GoForest();
-	else go = 2;
+	else go = Go::TOWN;
 	return display;
 }
 
@@ -155,7 +155,7 @@ string Game::GetShopDisp()
 	display.replace(shopToTown[0] + shopToTown[1] * 20, 1, "0");
 	display.replace(x + 20 * y, 1, "*");
 	if (x == shopToTown[0] && y == shopToTown[1])GoTown();
-	else go = 3;
+	else go = Go::SHOP;
 	return display;
 }
 
@@ -178,40 +178,40 @@ string Game::GetForestDisp(EarthWorm monster[])
 		MonsterAttack(i);
 	}
 	if (x == forestToTown[0] && y == forestToTown[1])GoTown();
-	else go = 4;
+	else go = Go::FOREST;
 	return display;
 }
 
 void Game::GoHome()
 {
-	go = 1;
+	go = Go::HOME;
 	cout << "집으로 가시겠습니까?\n";
 }
 
 void Game::GoTown()
 {
-	go = 2;
+	go = Go::TOWN;
 	cout << "마을로 가시겠습니까?\n";
 }
 
 void Game::GoShop()
 {
-	go = 3;
+	go = Go::SHOP;
 	cout << "상점으로 가시겠습니까?\n";
 }
 
 void Game::GoForest()
 {
-	go = 4;
+	go = Go::FOREST;
 	cout << "숲으로 가시겠습니까?\n";
 }
 
-int Game::GetGo() const
+Go Game::GetGo() const
 {
 	return go;
 }
 
-void Game::SetGo(int go)
+void Game::SetGo(Go go)
 {
 	this->go = go;
 }

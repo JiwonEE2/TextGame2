@@ -2,7 +2,7 @@
 #include"SceneManager.h"
 #include"Player.h"
 #include"EarthWorm.h"
-
+#include"Go.h"
 int main() {
 	Player player;
 	Game game(&player);
@@ -37,36 +37,36 @@ int main() {
 			// 집에서부터 게임 시작
 			player.SetIsChoice(false);
 			switch (game.GetGo()) {
-			case 1:
+			case Go::HOME:
 				SceneManager::GetInstance().SetCurrentScene("집");
 				player.SetXY(9, 10);
-				while (!player.GetIsChoice() || game.GetGo() == 1) {
+				while (!player.GetIsChoice() || game.GetGo() == Go::HOME) {
 					SceneManager::GetInstance().EditShowCurrentScene(game.GetHomeDisp());
 					player.PrintStatus();
 					player.InputKey(2);
 				}
 				break;
-			case 2:
+			case Go::TOWN:
 				SceneManager::GetInstance().SetCurrentScene("마을");
 				player.SetXY(3, 5);
-				while (!player.GetIsChoice() || game.GetGo() == 2) {
+				while (!player.GetIsChoice() || game.GetGo() == Go::TOWN) {
 					SceneManager::GetInstance().EditShowCurrentScene(game.GetTownDisp());
 					player.PrintStatus();
 					player.InputKey(2);
 				}
 				break;
-			case 3:
+			case Go::SHOP:
 				SceneManager::GetInstance().SetCurrentScene("상점");
 				player.SetXY(1, 1);
-				while (!player.GetIsChoice() || game.GetGo() == 3) {
+				while (!player.GetIsChoice() || game.GetGo() == Go::SHOP) {
 					SceneManager::GetInstance().EditShowCurrentScene(game.GetShopDisp());
 					player.InputKey(3);
 				}
 				break;
-			case 4:
+			case Go::FOREST:
 				SceneManager::GetInstance().SetCurrentScene("숲");
 				player.SetXY(1, 7);
-				while ((!player.GetIsChoice() || game.GetGo() == 4) && !player.GetIsDeath()) {
+				while ((!player.GetIsChoice() || game.GetGo() == Go::FOREST) && !player.GetIsDeath()) {
 					SceneManager::GetInstance().EditShowCurrentScene(game.GetForestDisp(earthWorms));
 					player.PrintStatus();
 					player.InputKey(2);

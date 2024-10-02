@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="EarthWorm.h" />
+    <ClInclude Include="Go.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
