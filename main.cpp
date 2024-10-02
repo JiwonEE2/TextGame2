@@ -4,6 +4,7 @@
 #include"Player.h"
 #include"EarthWorm.h"
 #include"Go.h"
+
 int main() {
 	Player player;
 	Game game(&player);

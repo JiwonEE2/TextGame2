@@ -28,6 +28,21 @@ void ItemManager::SetCurrentItem(int index)
 	currentItem = items[index];
 }
 
+string ItemManager::GetItemName() const
+{
+	return currentItem->GetName();
+}
+
+int ItemManager::GetItemAttack() const
+{
+	return currentItem->GetAttack();
+}
+
+int ItemManager::GetItemHealth() const
+{
+	return currentItem->GetHealth();
+}
+
 int ItemManager::GetItemMoney() const
 {
 	return currentItem->GetMoney();

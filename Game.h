@@ -5,6 +5,7 @@
 #include"Go.h"
 #include"ItemManager.h"
 using namespace std;
+
 class Game
 {
 	string startDisp, homeDisp, townDisp, shopDisp, forestDisp;

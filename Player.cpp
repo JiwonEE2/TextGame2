@@ -14,6 +14,7 @@ Player::Player()
 	maxExperience = 1000;
 	level = 1;
 	money = 2000;
+	inventory;
 }
 
 void Player::SetPlayerName()
@@ -198,4 +199,14 @@ int Player::GetMoney() const
 void Player::SetMoney(int m)
 {
 	money = m;
+}
+
+void Player::ShowInventory() const
+{
+	inventory->ShowItems();
+}
+
+void Player::AddItem() const
+{
+	inventory->AddItem();
 }

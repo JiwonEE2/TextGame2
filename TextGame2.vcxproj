@@ -130,6 +130,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="EarthWorm.h" />
     <ClInclude Include="Go.h" />
+    <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="Monster.h" />
@@ -141,6 +142,7 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="EarthWorm.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="main.cpp" />

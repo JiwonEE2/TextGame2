@@ -17,6 +17,11 @@ void Item::Print() const
 	cout << "АЁАн : " << money << "\n";
 }
 
+string Item::GetName()
+{
+	return name;
+}
+
 int Item::GetAttack()
 {
 	return attack;

@@ -1,5 +1,7 @@
 #pragma once
 #include<iostream>
+#include"Inventory.h"
+#include"ItemManager.h"
 using namespace std;
 
 class Player
@@ -18,6 +20,7 @@ protected:
 	int maxHealth;
 	bool isDeath = false;
 	int experience;
+	Inventory* inventory = new Inventory;
 public:
 	Player();
 	void SetPlayerName();
@@ -42,4 +45,6 @@ public:
 	void Heal();
 	int GetMoney()const;
 	void SetMoney(int m);
+	void ShowInventory()const;
+	void AddItem()const;
 };

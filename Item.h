@@ -10,6 +10,7 @@ class Item
 public:
 	Item(string n, int a, int h, int m);
 	void Print()const;
+	string GetName();
 	int GetAttack();
 	int GetHealth();
 	int GetMoney();

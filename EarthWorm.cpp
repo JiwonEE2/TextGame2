@@ -8,6 +8,7 @@ EarthWorm::EarthWorm()
 	x = rand() % 15 + 1;
 	y = rand() % 17 + 1;
 	experience = 700;
+	inventory;
 }
 
 void EarthWorm::Print() const

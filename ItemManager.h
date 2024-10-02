@@ -13,5 +13,8 @@ public:
 	int GetItemNumber()const;
 	void ShowItem()const;
 	void SetCurrentItem(int index);
+	string GetItemName()const;
+	int GetItemAttack()const;
+	int GetItemHealth()const;
 	int GetItemMoney()const;
 };

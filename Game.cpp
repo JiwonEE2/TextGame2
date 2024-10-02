@@ -5,7 +5,8 @@
 Game::Game(Player* player)
 {
 	pp = player;
-	go = Go::HOME;
+	// start 씬 다음 화면
+	go = Go::SHOP;
 	startDisp =
 		"-------------------\n"
 		"   새 게임\n"
@@ -162,6 +163,8 @@ string Game::GetShopDisp()
 	for (int i = 1; i < ItemManager::GetInstance().GetItemNumber() + 1; i++) {
 		if (x == 3 && y == itemY[i] + 3)PrintItem(i);
 	}
+	// 인벤토리 보여주기
+	pp->ShowInventory();
 	if (x == shopToTown[0] && y == shopToTown[1])GoTown();
 	else go = Go::SHOP;
 	return display;
@@ -217,17 +220,25 @@ void Game::GoForest()
 void Game::PrintItem(int i)
 {
 	ItemManager::GetInstance().SetCurrentItem(i);
+	cout << "~~~ 상점의 아이템들 ~~~\n";
 	ItemManager::GetInstance().ShowItem();
+	// i 아이템 위치에서 선택
 	if (pp->GetIsChoice()) {
 		cout << "아이템 구매하시겠습니까?\n";
 		pp->PrintStatus();
 		pp->InputKey(2);
+		// 재선택 했을 시
 		if (pp->GetIsChoice()) {
+			// 돈이 없다면
 			if (pp->GetMoney() < ItemManager::GetInstance().GetItemMoney()) {
-				cout << "돈이 부족합니다.\n";
+				cout << "돈이 부족하여 구매하지 못했습니다.\n";
 			}
+			// 아이템 구매
 			else {
 				pp->SetMoney(pp->GetMoney() - ItemManager::GetInstance().GetItemMoney());
+				cout << ItemManager::GetInstance().GetItemName() << "을 구매하였습니다.\n";
+				// 비어있는 곳에 넣어야 하는데..
+				pp->AddItem();
 			}
 		}
 	}
