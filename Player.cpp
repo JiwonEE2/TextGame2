@@ -13,6 +13,7 @@ Player::Player()
 	experience = 0;
 	maxExperience = 1000;
 	level = 1;
+	money = 2000;
 }
 
 void Player::SetPlayerName()
@@ -119,6 +120,7 @@ void Player::PrintStatus() const
 	cout << "체력 : " << health << "/" << maxHealth << "\n";
 	cout << "공격력 : " << attack << "\n";
 	cout << "경험치 : " << experience << "/" << maxExperience << "\n";
+	cout << "돈 : " << money << "\n";
 	cout << "=========================================== \n";
 }
 
@@ -186,4 +188,14 @@ void Player::Print() const
 void Player::Heal()
 {
 	health = maxHealth;
+}
+
+int Player::GetMoney() const
+{
+	return money;
+}
+
+void Player::SetMoney(int m)
+{
+	money = m;
 }

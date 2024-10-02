@@ -1,10 +1,11 @@
 #include "Item.h"
 
-Item::Item(string n, int a, int h)
+Item::Item(string n, int a, int h, int m)
 {
 	name = n;
 	attack = a;
 	health = h;
+	money = m;
 }
 
 void Item::Print() const
@@ -13,6 +14,7 @@ void Item::Print() const
 	cout << "이름 : " << name << "\n";
 	cout << "공격력 : " << attack << "\n";
 	cout << "체력 : " << health << "\n";
+	cout << "가격 : " << money << "\n";
 }
 
 int Item::GetAttack()
@@ -23,4 +25,9 @@ int Item::GetAttack()
 int Item::GetHealth()
 {
 	return health;
+}
+
+int Item::GetMoney()
+{
+	return money;
 }

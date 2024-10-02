@@ -9,6 +9,7 @@ class Player
 	int maxExperience;
 	int level;
 	bool pressAttack = false;
+	int money;
 protected:
 	string name;
 	int x, y;
@@ -39,4 +40,6 @@ public:
 	void Attacked(Player* other);
 	virtual void Print()const;
 	void Heal();
+	int GetMoney()const;
+	void SetMoney(int m);
 };

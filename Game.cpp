@@ -218,6 +218,19 @@ void Game::PrintItem(int i)
 {
 	ItemManager::GetInstance().SetCurrentItem(i);
 	ItemManager::GetInstance().ShowItem();
+	if (pp->GetIsChoice()) {
+		cout << "아이템 구매하시겠습니까?\n";
+		pp->PrintStatus();
+		pp->InputKey(2);
+		if (pp->GetIsChoice()) {
+			if (pp->GetMoney() < ItemManager::GetInstance().GetItemMoney()) {
+				cout << "돈이 부족합니다.\n";
+			}
+			else {
+				pp->SetMoney(pp->GetMoney() - ItemManager::GetInstance().GetItemMoney());
+			}
+		}
+	}
 }
 
 Go Game::GetGo() const

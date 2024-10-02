@@ -9,9 +9,9 @@ int main() {
 	Game game(&player);
 
 	// 아이템 생성
-	ItemManager::GetInstance().AddItem(1, "칼", 5, 0);
-	ItemManager::GetInstance().AddItem(2, "회복약", 0, 5);
-	ItemManager::GetInstance().AddItem(3, "마약", 10, 10);
+	ItemManager::GetInstance().AddItem(1, "칼", 5, 0, 500);
+	ItemManager::GetInstance().AddItem(2, "회복약", 0, 5, 100);
+	ItemManager::GetInstance().AddItem(3, "마약", 10, 10, 1000);
 
 	// 몬스터 생성
 	srand(time(0));

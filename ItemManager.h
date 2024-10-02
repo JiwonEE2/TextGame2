@@ -9,8 +9,9 @@ class ItemManager :public Singleton<ItemManager>
 public:
 	ItemManager();
 	~ItemManager();
-	void AddItem(int index, const string& name, int attack, int health);
+	void AddItem(int index, const string& name, int attack, int health, int money);
 	int GetItemNumber()const;
 	void ShowItem()const;
 	void SetCurrentItem(int index);
+	int GetItemMoney()const;
 };
