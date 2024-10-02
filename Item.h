@@ -9,4 +9,6 @@ class Item
 public:
 	Item(string n, int a, int h);
 	void Print()const;
+	int GetAttack();
+	int GetHealth();
 };

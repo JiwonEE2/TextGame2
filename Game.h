@@ -3,6 +3,7 @@
 #include"Player.h"
 #include"EarthWorm.h"
 #include"Go.h"
+#include"ItemManager.h"
 using namespace std;
 class Game
 {
@@ -28,6 +29,7 @@ public:
 	void GoTown();
 	void GoShop();
 	void GoForest();
+	void PrintItem(int i);
 	Go GetGo()const;
 	void SetGo(Go go);
 

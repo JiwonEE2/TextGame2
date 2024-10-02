@@ -14,3 +14,13 @@ void Item::Print() const
 	cout << "공격력 : " << attack << "\n";
 	cout << "체력 : " << health << "\n";
 }
+
+int Item::GetAttack()
+{
+	return attack;
+}
+
+int Item::GetHealth()
+{
+	return health;
+}

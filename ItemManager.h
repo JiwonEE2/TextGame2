@@ -4,10 +4,13 @@
 #include"Item.h"
 class ItemManager :public Singleton<ItemManager>
 {
-	map<string, Item*>items;
+	map<int, Item*>items;
 	Item* currentItem = nullptr;
 public:
 	ItemManager();
 	~ItemManager();
-	void AddItem(const string& name, int attack, int health);
+	void AddItem(int index, const string& name, int attack, int health);
+	int GetItemNumber()const;
+	void ShowItem()const;
+	void SetCurrentItem(int index);
 };

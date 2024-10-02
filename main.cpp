@@ -1,11 +1,17 @@
 #include"Game.h"
 #include"SceneManager.h"
+#include"ItemManager.h"
 #include"Player.h"
 #include"EarthWorm.h"
 #include"Go.h"
 int main() {
 	Player player;
 	Game game(&player);
+
+	// 아이템 생성
+	ItemManager::GetInstance().AddItem(1, "칼", 5, 0);
+	ItemManager::GetInstance().AddItem(2, "회복약", 0, 5);
+	ItemManager::GetInstance().AddItem(3, "마약", 10, 10);
 
 	// 몬스터 생성
 	srand(time(0));

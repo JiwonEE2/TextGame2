@@ -6,10 +6,24 @@ ItemManager::ItemManager()
 
 ItemManager::~ItemManager()
 {
-	for (auto& pair : items)delete pair.second;
 }
 
-void ItemManager::AddItem(const string& name, int attack, int health)
+void ItemManager::AddItem(int index, const string& name, int attack, int health)
 {
-	items[name] = new Item(name, attack, health);
+	items[index] = new Item(name, attack, health);
+}
+
+int ItemManager::GetItemNumber() const
+{
+	return items.size();
+}
+
+void ItemManager::ShowItem() const
+{
+	currentItem->Print();
+}
+
+void ItemManager::SetCurrentItem(int index)
+{
+	currentItem = items[index];
 }

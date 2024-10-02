@@ -152,8 +152,16 @@ string Game::GetShopDisp()
 	string display = shopDisp;
 	int x = pp->GetX();
 	int y = pp->GetY();
+	int itemY[10];
+	for (int i = 1; i < ItemManager::GetInstance().GetItemNumber() + 1; i++) {
+		itemY[i] = i;
+		display.replace((itemY[i] + 3) * 20 + 3, 1, "+");
+	}
 	display.replace(shopToTown[0] + shopToTown[1] * 20, 1, "0");
 	display.replace(x + 20 * y, 1, "*");
+	for (int i = 1; i < ItemManager::GetInstance().GetItemNumber() + 1; i++) {
+		if (x == 3 && y == itemY[i] + 3)PrintItem(i);
+	}
 	if (x == shopToTown[0] && y == shopToTown[1])GoTown();
 	else go = Go::SHOP;
 	return display;
@@ -204,6 +212,12 @@ void Game::GoForest()
 {
 	go = Go::FOREST;
 	cout << "숲으로 가시겠습니까?\n";
+}
+
+void Game::PrintItem(int i)
+{
+	ItemManager::GetInstance().SetCurrentItem(i);
+	ItemManager::GetInstance().ShowItem();
 }
 
 Go Game::GetGo() const
