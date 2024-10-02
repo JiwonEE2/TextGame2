@@ -11,7 +11,6 @@ class Player
 	int maxExperience;
 	int level;
 	bool pressAttack = false;
-	int money;
 protected:
 	string name;
 	int x, y;
@@ -20,6 +19,7 @@ protected:
 	int maxHealth;
 	bool isDeath = false;
 	int experience;
+	int money;
 	Inventory* inventory = new Inventory;
 public:
 	Player();

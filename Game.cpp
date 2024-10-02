@@ -47,7 +47,7 @@ Game::Game(Player* player)
 		"|       |  |      |\n"
 		"|       |  |      |\n"
 		"|       |  |      |\n"
-		"|       |  |      |\n"
+		"|  shop |  |      |\n"
 		"|       |  |      |\n"
 		"|       |  |      |\n"
 		"|       |  |      |\n"
@@ -279,6 +279,8 @@ void Game::MonsterAttack(int i)
 				if (mp[i]->GetIsDeath()) {
 					cout << mp[i]->GetName() << "는 사망했습니다\n";
 					pp->UpExperience(mp[i]);
+					pp->SetMoney(pp->GetMoney() + mp[i]->GetMoney());
+					cout << mp[i]->GetMoney() << "원을 주웠다!!!\n";
 				}
 			}
 		}
