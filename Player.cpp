@@ -76,33 +76,34 @@ void Player::InputKey(int n)
 	case 87:
 	case 119:
 		y--;
-		cout << "상\n" << y;
+		//cout << "상\n" << y;
 		break;
 	case 83:
 	case 115:
 		y++;
-		cout << "하\n";
+		//cout << "하\n";
 		break;
 	case 65:
 	case 97:
 		x--;
-		cout << "좌\n";
+		//cout << "좌\n";
 		break;
 	case 68:
 	case 100:
 		x++;
-		cout << "우\n";
+		//cout << "우\n";
 		break;
 	case 73:
 	case 105:
 		// I,i
-		cout << "인벤토리키\n";
+		//cout << "인벤토리키\n";
+		// 이때 인벤이 열리거나 닫혀야 함. (인벤씬으로 가거나 나와야함)
 		inventory->ToggleInven();
 		break;
 	case 74:
 	case 106:
 		// J,j
-		cout << "공격키\n";
+		//cout << "공격키\n";
 		pressAttack = true;
 		break;
 	}
@@ -214,9 +215,19 @@ void Player::SetMoney(int m)
 	money = m;
 }
 
-void Player::ShowInventory() const
+bool Player::GetInvenOpen() const
 {
-	inventory->ShowItems();
+	return inventory->GetIsOpen();
+}
+
+int Player::GetItemNumber() const
+{
+	return inventory->GetItemNumber();
+}
+
+void Player::ShowInventoryItem(int i) const
+{
+	inventory->ShowItems(i);
 }
 
 void Player::AddItem() const

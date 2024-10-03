@@ -49,6 +49,9 @@ public:
 	void Heal();
 	int GetMoney()const;
 	void SetMoney(int m);
-	void ShowInventory()const;
+
+	bool GetInvenOpen()const;
+	int GetItemNumber()const;
+	void ShowInventoryItem(int i)const;
 	void AddItem()const;
 };

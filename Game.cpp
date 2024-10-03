@@ -3,7 +3,6 @@
 Game::Game()
 {
 	// start 씬 다음 화면
-	go = Go::TOWN;
 	startDisp =
 		"-------------------\n"
 		"   새 게임\n"
@@ -93,6 +92,27 @@ Game::Game()
 		"|       |  |      |\n"
 		"|       |  |      |\n"
 		"------------------\n";
+	inventoryDisp =
+		"------------------\n"
+		"|   INVENTORY     |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"|                 |\n"
+		"------------------\n";
 
 	// 아이템 생성
 	ItemManager::GetInstance().AddItem(1, "단검", "무기", 5, 0, 0, 500);
@@ -114,6 +134,7 @@ Game::Game()
 	SceneManager::GetInstance().AddScene("마을", "1. 집으로, 2. 숲으로");
 	SceneManager::GetInstance().AddScene("상점", "1. 마을로");
 	SceneManager::GetInstance().AddScene("숲", "1. 마을로");
+	SceneManager::GetInstance().AddScene("인벤토리", "1. 이전화면으로");
 }
 
 Game::~Game()
@@ -141,47 +162,76 @@ void Game::StartGame()
 	if (player.GetY() == 1) {
 		// 이름 정하는 화면
 		player.SetPlayerName();
+
+		// 집에서부터 게임 시작
+		go = Go::SHOP;
+		preGo=Go::HOME;
 		while (!player.GetIsDeath()) {
-			// 집에서부터 게임 시작
 			player.SetIsChoice(false);
-			switch (GetGo())
+			switch (go)
 			{
 			case Go::HOME:
 				SceneManager::GetInstance().SetCurrentScene("집");
 				player.SetXY(9, 10);
-				while (!player.GetIsChoice() || GetGo() == Go::HOME) {
+				while (!player.GetIsChoice() || go == Go::HOME) {
 					SceneManager::GetInstance().EditShowCurrentScene(GetHomeDisp());
+					if (go == Go::INVENTORY) {
+						system("cls");
+						break;
+					}
 					player.PrintStatus();
-					player.ShowInventory();
 					player.InputKey(2);
 				}
+				break;
 			case Go::TOWN:
 				SceneManager::GetInstance().SetCurrentScene("마을");
 				player.SetXY(3, 5);
-				while (!player.GetIsChoice() || GetGo() == Go::TOWN) {
+				while (!player.GetIsChoice() || go == Go::TOWN) {
 					SceneManager::GetInstance().EditShowCurrentScene(GetTownDisp());
+					if (go == Go::INVENTORY) {
+						system("cls");
+						break;
+					}
 					player.PrintStatus();
-					player.ShowInventory();
 					player.InputKey(2);
 				}
 				break;
 			case Go::SHOP:
 				SceneManager::GetInstance().SetCurrentScene("상점");
 				player.SetXY(1, 1);
-				while (!player.GetIsChoice() || GetGo() == Go::SHOP) {
+				while (!player.GetIsChoice() || go == Go::SHOP) {
 					SceneManager::GetInstance().EditShowCurrentScene(GetShopDisp());
-					player.ShowInventory();
+					if (go == Go::INVENTORY) {
+						system("cls");
+						break;
+					}
 					player.InputKey(3);
 				}
 				break;
 			case Go::FOREST:
 				SceneManager::GetInstance().SetCurrentScene("숲");
 				player.SetXY(1, 7);
-				while ((!player.GetIsChoice() || GetGo() == Go::FOREST) && !player.GetIsDeath()) {
+				while ((!player.GetIsChoice() || go == Go::FOREST) && !player.GetIsDeath()) {
 					SceneManager::GetInstance().EditShowCurrentScene(GetForestDisp(earthWorms));
+					if (go == Go::INVENTORY) {
+						system("cls");
+						break;
+					}
 					player.PrintStatus();
-					player.ShowInventory();
 					player.InputKey(2);
+				}
+				break;
+			case Go::INVENTORY:
+				SceneManager::GetInstance().SetCurrentScene("인벤토리");
+				player.SetXY(1, 1);
+				while (!player.GetIsChoice() || go == Go::INVENTORY) {
+					SceneManager::GetInstance().EditShowCurrentScene(GetInvenDisp());
+					if (go != Go::INVENTORY) {
+						system("cls");
+						go = preGo;
+						break;
+					}
+					player.InputKey(4);
 				}
 				break;
 			default:
@@ -211,7 +261,15 @@ string Game::GetHomeDisp()
 	int y = player.GetY();
 	display.replace(homeToTown[0] + homeToTown[1] * 20, 1, "0");
 	display.replace(x + 20 * y, 1, "*");
-	if (x > 4 && x < 11 && y > 5 && y < 8)IsBed();
+
+	// home 뿐만 아니라 모든 곳에서 플레이어가 인벤오픈키를 눌렀는지 받는다.
+	// 만약 true라면 바로 인벤으로 간다.
+	if (player.GetInvenOpen()) {
+		go = Go::INVENTORY;
+		cout << "인벤을 열려고 한다ㅏ..\n";
+		preGo = Go::HOME;
+	}
+	else if (x > 4 && x < 11 && y > 5 && y < 8)IsBed();
 	else if (x == homeToTown[0] && y == homeToTown[1])GoTown();
 	else go = Go::HOME;
 	return display;
@@ -227,7 +285,14 @@ string Game::GetTownDisp()
 	display.replace(quest[0] + quest[1] * 20, 1, "0");
 	display.replace(townToForest[0] + townToForest[1] * 20, 1, "0");
 	display.replace(x + 20 * y, 1, "*");
-	if (x == townToHome[0] && y == townToHome[1])GoHome();
+	// home 뿐만 아니라 모든 곳에서 플레이어가 인벤오픈키를 눌렀는지 받는다.
+	// 만약 true라면 바로 인벤으로 간다.
+	if (player.GetInvenOpen()) {
+		go = Go::INVENTORY;
+		cout << "인벤을 열려고 한다ㅏ..\n";
+		preGo = Go::TOWN;
+	}
+	else if (x == townToHome[0] && y == townToHome[1])GoHome();
 	else if (x == townToShop[0] && y == townToShop[1])GoShop();
 	else if (x == townToForest[0] && y == townToForest[1])GoForest();
 	else if (x == quest[0] && y == quest[1])Quest();
@@ -250,7 +315,14 @@ string Game::GetShopDisp()
 	for (int i = 1; i < ItemManager::GetInstance().GetItemNumber() + 1; i++) {
 		if (x == 3 && y == itemY[i] + 3)PrintItem(i);
 	}
-	if (x == shopToTown[0] && y == shopToTown[1])GoTown();
+	// home 뿐만 아니라 모든 곳에서 플레이어가 인벤오픈키를 눌렀는지 받는다.
+	// 만약 true라면 바로 인벤으로 간다.
+	if (player.GetInvenOpen()) {
+		go = Go::INVENTORY;
+		cout << "인벤을 열려고 한다ㅏ..\n";
+		preGo = Go::SHOP;
+	}
+	else if (x == shopToTown[0] && y == shopToTown[1])GoTown();
 	else go = Go::SHOP;
 	return display;
 }
@@ -273,8 +345,40 @@ string Game::GetForestDisp(EarthWorm monster[])
 	for (int i = 0; i < 5; i++) {
 		MonsterAttack(i);
 	}
-	if (x == forestToTown[0] && y == forestToTown[1])GoTown();
+	// home 뿐만 아니라 모든 곳에서 플레이어가 인벤오픈키를 눌렀는지 받는다.
+	// 만약 true라면 바로 인벤으로 간다.
+	if (player.GetInvenOpen()) {
+		go = Go::INVENTORY;
+		cout << "인벤을 열려고 한다ㅏ..\n";
+		preGo = Go::FOREST;
+	}
+	else if (x == forestToTown[0] && y == forestToTown[1])GoTown();
 	else go = Go::FOREST;
+	return display;
+}
+
+string Game::GetInvenDisp()
+{
+	string display = inventoryDisp;
+	int x = player.GetX();
+	int y = player.GetY();
+	int itemY[100];
+	for (int i = 1; i < player.GetItemNumber() + 1; i++) {
+		itemY[i] = i;
+		display.replace((itemY[i] + 3) * 20 + 3, 1, "+");
+	}
+	display.replace(x + 20 * y, 1, "*");
+	for (int i = 1; i < ItemManager::GetInstance().GetItemNumber() + 1; i++) {
+		if (x == 3 && y == itemY[i] + 3) {
+			player.ShowInventoryItem(i);
+		}
+	}
+	// 인벤이 닫혔다는 신호를 확인하고
+	if (!player.GetInvenOpen()) {
+		go = preGo;
+		cout << "인벤을 닫으려고 한다..\n";
+	}
+	else go = Go::INVENTORY;
 	return display;
 }
 
@@ -346,16 +450,6 @@ void Game::PrintItem(int i)
 			}
 		}
 	}
-}
-
-Go Game::GetGo() const
-{
-	return go;
-}
-
-void Game::SetGo(Go go)
-{
-	this->go = go;
 }
 
 void Game::IsBed()

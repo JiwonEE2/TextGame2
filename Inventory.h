@@ -11,7 +11,10 @@ public:
 	Inventory() {}
 	~Inventory() {}
 	void AddItem();
+	int GetItemNumber()const;
 	void SetCurrentItem(int invenSlot);
-	void ShowItems();
+	void ShowItems(int i);
 	void ToggleInven();
+	bool GetIsOpen()const;
+	void SetIsOpen(bool is);
 };
