@@ -162,7 +162,8 @@ bool Inventory::IsEquippedBoots() const
 
 void Inventory::SetIsEquipped(int index, bool is)
 {
-	if (index == 1)isEquippedHelmet = is;
+	if (index == 0)isEquippedWeapon = is;
+	else if (index == 1)isEquippedHelmet = is;
 	else if (index == 2)isEquippedChestplate = is;
 	else if (index == 3)isEquippedLeggings = is;
 	else isEquippedBoots = is;

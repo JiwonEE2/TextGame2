@@ -247,6 +247,7 @@ void Player::ShowInventoryItem(int i)
 				// weapon 장착되어 있을 시
 				if (inventory->IsEquippedWeapon()) {
 					cout << inventory->GetEquippedName(0) << "와 변경되었습니다\n";
+					Sleep(1000);
 					attack -= inventory->GetEquippedAttack(0);
 					defense -= inventory->GetEquippedDefense(0);
 					health -= inventory->GetEquippedHealth(0);
@@ -255,7 +256,7 @@ void Player::ShowInventoryItem(int i)
 					health += inventory->GetItemHealth();
 					if (health >= maxHealth)health = maxHealth;
 					// 원래 장착하고 있던 아이템 인벤토리 뒤쪽에 추가
-					inventory->UnEquipItem(i);
+					inventory->UnEquipItem(0);
 					// 장착
 					inventory->EquipItem(0);
 					// 인벤에서 장착한 아이템 삭제
@@ -266,6 +267,7 @@ void Player::ShowInventoryItem(int i)
 					defense += inventory->GetItemDefense();
 					health += inventory->GetItemHealth();
 					if (health >= maxHealth)health = maxHealth;
+					// 장착0번(무기)에 현재 선택된 아이템 추가
 					inventory->EquipItem(0);
 					inventory->SetIsEquipped(0, true);
 					inventory->DeleteItem(i);
@@ -276,6 +278,7 @@ void Player::ShowInventoryItem(int i)
 				// helmet 장착되어 있을 시
 				if (inventory->IsEquippedHelmet()) {
 					cout << inventory->GetEquippedName(1) << "와 변경되었습니다\n";
+					Sleep(1000);
 					attack -= inventory->GetEquippedAttack(1);
 					defense -= inventory->GetEquippedDefense(1);
 					health -= inventory->GetEquippedHealth(1);
@@ -284,7 +287,7 @@ void Player::ShowInventoryItem(int i)
 					health += inventory->GetItemHealth();
 					if (health >= maxHealth)health = maxHealth;
 					// 원래 장착하고 있던 아이템 인벤토리 뒤쪽에 추가
-					inventory->UnEquipItem(i);
+					inventory->UnEquipItem(1);
 					// 장착
 					inventory->EquipItem(1);
 					// 인벤에서 장착한 아이템 삭제
@@ -305,6 +308,7 @@ void Player::ShowInventoryItem(int i)
 				// 장착되어 있을 시
 				if (inventory->IsEquippedChestplate()) {
 					cout << inventory->GetEquippedName(2) << "와 변경되었습니다\n";
+					Sleep(1000);
 					attack -= inventory->GetEquippedAttack(2);
 					defense -= inventory->GetEquippedDefense(2);
 					health -= inventory->GetEquippedHealth(2);
@@ -313,7 +317,7 @@ void Player::ShowInventoryItem(int i)
 					health += inventory->GetItemHealth();
 					if (health >= maxHealth)health = maxHealth;
 					// 원래 장착하고 있던 아이템 인벤토리 뒤쪽에 추가
-					inventory->UnEquipItem(i);
+					inventory->UnEquipItem(2);
 					// 장착
 					inventory->EquipItem(2);
 					// 인벤에서 장착한 아이템 삭제
@@ -334,6 +338,7 @@ void Player::ShowInventoryItem(int i)
 				// 장착되어 있을 시
 				if (inventory->IsEquippedLeggings()) {
 					cout << inventory->GetEquippedName(3) << "와 변경되었습니다\n";
+					Sleep(1000);
 					attack -= inventory->GetEquippedAttack(3);
 					defense -= inventory->GetEquippedDefense(3);
 					health -= inventory->GetEquippedHealth(3);
@@ -342,7 +347,7 @@ void Player::ShowInventoryItem(int i)
 					health += inventory->GetItemHealth();
 					if (health >= maxHealth)health = maxHealth;
 					// 원래 장착하고 있던 아이템 인벤토리 뒤쪽에 추가
-					inventory->UnEquipItem(i);
+					inventory->UnEquipItem(3);
 					// 장착
 					inventory->EquipItem(3);
 					// 인벤에서 장착한 아이템 삭제
@@ -363,6 +368,7 @@ void Player::ShowInventoryItem(int i)
 				// 장착되어 있을 시
 				if (inventory->IsEquippedBoots()) {
 					cout << inventory->GetEquippedName(4) << "와 변경되었습니다\n";
+					Sleep(1000);
 					attack -= inventory->GetEquippedAttack(4);
 					defense -= inventory->GetEquippedDefense(4);
 					health -= inventory->GetEquippedHealth(4);
@@ -371,7 +377,7 @@ void Player::ShowInventoryItem(int i)
 					health += inventory->GetItemHealth();
 					if (health >= maxHealth)health = maxHealth;
 					// 원래 장착하고 있던 아이템 인벤토리 뒤쪽에 추가
-					inventory->UnEquipItem(i);
+					inventory->UnEquipItem(4);
 					// 장착
 					inventory->EquipItem(4);
 					// 인벤에서 장착한 아이템 삭제
