@@ -2,7 +2,6 @@
 #include<map>
 #include"Singleton.h"
 #include"Scene.h"
-#include"Player.h"
 
 class SceneManager :public Singleton<SceneManager>
 {

@@ -3,6 +3,7 @@
 #include"Player.h"
 #include"EarthWorm.h"
 #include"Go.h"
+#include"SceneManager.h"
 #include"ItemManager.h"
 using namespace std;
 
@@ -24,6 +25,7 @@ class Game
 public:
 	Game(Player* player);
 	~Game();
+	void StartGame();
 	string GetStartDisp();
 	string GetHomeDisp();
 	string GetTownDisp();
