@@ -10,7 +10,7 @@ using namespace std;
 class Game
 {
 	string startDisp, homeDisp, townDisp, shopDisp, forestDisp;
-	Player* pp;
+	Player player;
 	Go go;
 	int homeToTown[2] = { 7,17 };
 	int townToHome[2] = { 3,4 };
@@ -23,7 +23,7 @@ class Game
 	bool qComplete = false;
 	EarthWorm* mp[];
 public:
-	Game(Player* player);
+	Game();
 	~Game();
 	void StartGame();
 	string GetStartDisp();
@@ -40,6 +40,6 @@ public:
 	Go GetGo()const;
 	void SetGo(Go go);
 
-	void IsBed()const;
+	void IsBed();
 	void MonsterAttack(int i);
 };

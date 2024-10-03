@@ -1,8 +1,7 @@
 #include"Game.h"
 
-Game::Game(Player* player)
+Game::Game()
 {
-	pp = player;
 	// start 씬 다음 화면
 	go = Go::TOWN;
 	startDisp =
@@ -110,9 +109,7 @@ Game::Game(Player* player)
 
 Game::~Game()
 {
-	delete pp;
 	delete[] * mp;
-	pp = nullptr;
 	*mp = nullptr;
 }
 
@@ -127,51 +124,51 @@ void Game::StartGame()
 	}
 	// 시작화면
 	SceneManager::GetInstance().SetCurrentScene("시작");
-	while (!pp->GetIsChoice()) {
+	while (!player.GetIsChoice()) {
 		SceneManager::GetInstance().EditShowCurrentScene(GetStartDisp());
-		pp->InputKey(1);
+		player.InputKey(1);
 	}
 
-	if (pp->GetY() == 1) {
+	if (player.GetY() == 1) {
 		// 이름 정하는 화면
-		pp->SetPlayerName();
-		while (!pp->GetIsDeath()) {
+		player.SetPlayerName();
+		while (!player.GetIsDeath()) {
 			// 집에서부터 게임 시작
-			pp->SetIsChoice(false);
+			player.SetIsChoice(false);
 			switch (GetGo())
 			{
 			case Go::HOME:
 				SceneManager::GetInstance().SetCurrentScene("집");
-				pp->SetXY(9, 10);
-				while (!pp->GetIsChoice() || GetGo() == Go::HOME) {
+				player.SetXY(9, 10);
+				while (!player.GetIsChoice() || GetGo() == Go::HOME) {
 					SceneManager::GetInstance().EditShowCurrentScene(GetHomeDisp());
-					pp->PrintStatus();
-					pp->InputKey(2);
+					player.PrintStatus();
+					player.InputKey(2);
 				}
 			case Go::TOWN:
 				SceneManager::GetInstance().SetCurrentScene("마을");
-				pp->SetXY(3, 5);
-				while (!pp->GetIsChoice() || GetGo() == Go::TOWN) {
+				player.SetXY(3, 5);
+				while (!player.GetIsChoice() || GetGo() == Go::TOWN) {
 					SceneManager::GetInstance().EditShowCurrentScene(GetTownDisp());
-					pp->PrintStatus();
-					pp->InputKey(2);
+					player.PrintStatus();
+					player.InputKey(2);
 				}
 				break;
 			case Go::SHOP:
 				SceneManager::GetInstance().SetCurrentScene("상점");
-				pp->SetXY(1, 1);
-				while (!pp->GetIsChoice() || GetGo() == Go::SHOP) {
+				player.SetXY(1, 1);
+				while (!player.GetIsChoice() || GetGo() == Go::SHOP) {
 					SceneManager::GetInstance().EditShowCurrentScene(GetShopDisp());
-					pp->InputKey(3);
+					player.InputKey(3);
 				}
 				break;
 			case Go::FOREST:
 				SceneManager::GetInstance().SetCurrentScene("숲");
-				pp->SetXY(1, 7);
-				while ((!pp->GetIsChoice() || GetGo() == Go::FOREST) && !pp->GetIsDeath()) {
+				player.SetXY(1, 7);
+				while ((!player.GetIsChoice() || GetGo() == Go::FOREST) && !player.GetIsDeath()) {
 					SceneManager::GetInstance().EditShowCurrentScene(GetForestDisp(earthWorms));
-					pp->PrintStatus();
-					pp->InputKey(2);
+					player.PrintStatus();
+					player.InputKey(2);
 				}
 				break;
 			default:
@@ -184,7 +181,7 @@ void Game::StartGame()
 string Game::GetStartDisp()
 {
 	string display = startDisp;
-	int n = pp->GetY();
+	int n = player.GetY();
 	if (n == 1) {
 		display.replace(21, 1, "*");
 	}
@@ -197,8 +194,8 @@ string Game::GetStartDisp()
 string Game::GetHomeDisp()
 {
 	string display = homeDisp;
-	int x = pp->GetX();
-	int y = pp->GetY();
+	int x = player.GetX();
+	int y = player.GetY();
 	display.replace(homeToTown[0] + homeToTown[1] * 20, 1, "0");
 	display.replace(x + 20 * y, 1, "*");
 	if (x > 4 && x < 11 && y > 5 && y < 8)IsBed();
@@ -210,8 +207,8 @@ string Game::GetHomeDisp()
 string Game::GetTownDisp()
 {
 	string display = townDisp;
-	int x = pp->GetX();
-	int y = pp->GetY();
+	int x = player.GetX();
+	int y = player.GetY();
 	display.replace(townToHome[0] + townToHome[1] * 20, 1, "0");
 	display.replace(townToShop[0] + townToShop[1] * 20, 1, "0");
 	display.replace(quest[0] + quest[1] * 20, 1, "0");
@@ -228,8 +225,8 @@ string Game::GetTownDisp()
 string Game::GetShopDisp()
 {
 	string display = shopDisp;
-	int x = pp->GetX();
-	int y = pp->GetY();
+	int x = player.GetX();
+	int y = player.GetY();
 	int itemY[10];
 	for (int i = 1; i < ItemManager::GetInstance().GetItemNumber() + 1; i++) {
 		itemY[i] = i;
@@ -241,7 +238,7 @@ string Game::GetShopDisp()
 		if (x == 3 && y == itemY[i] + 3)PrintItem(i);
 	}
 	// 인벤토리 보여주기
-	pp->ShowInventory();
+	player.ShowInventory();
 	if (x == shopToTown[0] && y == shopToTown[1])GoTown();
 	else go = Go::SHOP;
 	return display;
@@ -250,8 +247,8 @@ string Game::GetShopDisp()
 string Game::GetForestDisp(EarthWorm monster[])
 {
 	string display = forestDisp;
-	int x = pp->GetX();
-	int y = pp->GetY();
+	int x = player.GetX();
+	int y = player.GetY();
 	display.replace(forestToTown[0] + forestToTown[1] * 20, 1, "0");
 	int mx[5], my[5];
 	for (int i = 0; i < 5; i++) {
@@ -302,7 +299,7 @@ void Game::Quest()
 	cout << "진행 : " << qNow << "/" << qAll << "\n";
 	if (qNow == qAll) {
 		if (!qComplete) {
-			pp->SetMoney(pp->GetMoney() + qMoney);
+			player.SetMoney(player.GetMoney() + qMoney);
 			cout << "잘하셨습니다^^ " << qMoney << "원 지급ㅎ\n";
 			qComplete = true;
 		}
@@ -319,22 +316,22 @@ void Game::PrintItem(int i)
 	cout << "~~~ 상점의 아이템들 ~~~\n";
 	ItemManager::GetInstance().ShowItem();
 	// i 아이템 위치에서 선택
-	if (pp->GetIsChoice()) {
+	if (player.GetIsChoice()) {
 		cout << "아이템 구매하시겠습니까?\n";
-		pp->PrintStatus();
-		pp->InputKey(2);
+		player.PrintStatus();
+		player.InputKey(2);
 		// 재선택 했을 시
-		if (pp->GetIsChoice()) {
+		if (player.GetIsChoice()) {
 			// 돈이 없다면
-			if (pp->GetMoney() < ItemManager::GetInstance().GetItemMoney()) {
+			if (player.GetMoney() < ItemManager::GetInstance().GetItemMoney()) {
 				cout << "돈이 부족하여 구매하지 못했습니다.\n";
 			}
 			// 아이템 구매
 			else {
-				pp->SetMoney(pp->GetMoney() - ItemManager::GetInstance().GetItemMoney());
+				player.SetMoney(player.GetMoney() - ItemManager::GetInstance().GetItemMoney());
 				cout << ItemManager::GetInstance().GetItemName() << "을 구매하였습니다.\n";
 				// 비어있는 곳에 넣어야 하는데..
-				pp->AddItem();
+				player.AddItem();
 			}
 		}
 	}
@@ -350,33 +347,33 @@ void Game::SetGo(Go go)
 	this->go = go;
 }
 
-void Game::IsBed() const
+void Game::IsBed()
 {
-	if (pp->GetIsChoice() == true) {
+	if (player.GetIsChoice() == true) {
 		cout << "잠을 잡니다...\n";
-		pp->SetIsChoice(false);
-		pp->Heal();
+		player.SetIsChoice(false);
+		player.Heal();
 	}
 	cout << "Go to Sleep?\n";
 }
 
 void Game::MonsterAttack(int i)
 {
-	if (mp[i]->GetX() - pp->GetX() <= 1
-		&& mp[i]->GetX() - pp->GetX() >= -1
-		&& mp[i]->GetY() - pp->GetY() <= 1
-		&& mp[i]->GetY() - pp->GetY() >= -1) {
+	if (mp[i]->GetX() - player.GetX() <= 1
+		&& mp[i]->GetX() - player.GetX() >= -1
+		&& mp[i]->GetY() - player.GetY() <= 1
+		&& mp[i]->GetY() - player.GetY() >= -1) {
 		if (!mp[i]->GetIsDeath()) {
 			cout << i << "번째 지렁이에게 맞았습니다\n";
-			pp->Attacked(mp[i]);
-			if (pp->GetPressAttack()) {
-				mp[i]->Attacked(pp);
+			player.Attacked(mp[i]);
+			if (player.GetPressAttack()) {
+				mp[i]->Attacked(&player);
 				cout << i << "번째 지렁이를 때렸다!\n";
 				cout << "지렁이 남은 체력 : " << mp[i]->GetHealth() << "\n";
 				if (mp[i]->GetIsDeath()) {
 					cout << mp[i]->GetName() << "는 사망했습니다\n";
-					pp->UpExperience(mp[i]);
-					pp->SetMoney(pp->GetMoney() + mp[i]->GetMoney());
+					player.UpExperience(mp[i]);
+					player.SetMoney(player.GetMoney() + mp[i]->GetMoney());
 					qNow++;
 					cout << mp[i]->GetMoney() << "원을 주웠다!!!\n";
 				}
