@@ -266,7 +266,7 @@ string Game::GetHomeDisp()
 	// 만약 true라면 바로 인벤으로 간다.
 	if (player.GetInvenOpen()) {
 		go = Go::INVENTORY;
-		cout << "인벤을 열려고 한다ㅏ..\n";
+		//cout << "인벤을 열려고 한다ㅏ..\n";
 		preGo = Go::HOME;
 	}
 	else if (x > 4 && x < 11 && y > 5 && y < 8)IsBed();
@@ -289,7 +289,7 @@ string Game::GetTownDisp()
 	// 만약 true라면 바로 인벤으로 간다.
 	if (player.GetInvenOpen()) {
 		go = Go::INVENTORY;
-		cout << "인벤을 열려고 한다ㅏ..\n";
+		//cout << "인벤을 열려고 한다ㅏ..\n";
 		preGo = Go::TOWN;
 	}
 	else if (x == townToHome[0] && y == townToHome[1])GoHome();
@@ -313,13 +313,15 @@ string Game::GetShopDisp()
 	display.replace(shopToTown[0] + shopToTown[1] * 20, 1, "0");
 	display.replace(x + 20 * y, 1, "*");
 	for (int i = 1; i < ItemManager::GetInstance().GetItemNumber() + 1; i++) {
-		if (x == 3 && y == itemY[i] + 3)PrintItem(i);
+		if (x == 3 && y == itemY[i] + 3)BuyItem(i);
 	}
+	
+	// 아래는 씬 전환부분
 	// home 뿐만 아니라 모든 곳에서 플레이어가 인벤오픈키를 눌렀는지 받는다.
 	// 만약 true라면 바로 인벤으로 간다.
 	if (player.GetInvenOpen()) {
 		go = Go::INVENTORY;
-		cout << "인벤을 열려고 한다ㅏ..\n";
+		//cout << "인벤을 열려고 한다ㅏ..\n";
 		preGo = Go::SHOP;
 	}
 	else if (x == shopToTown[0] && y == shopToTown[1])GoTown();
@@ -349,7 +351,7 @@ string Game::GetForestDisp(EarthWorm monster[])
 	// 만약 true라면 바로 인벤으로 간다.
 	if (player.GetInvenOpen()) {
 		go = Go::INVENTORY;
-		cout << "인벤을 열려고 한다ㅏ..\n";
+		//cout << "인벤을 열려고 한다ㅏ..\n";
 		preGo = Go::FOREST;
 	}
 	else if (x == forestToTown[0] && y == forestToTown[1])GoTown();
@@ -376,7 +378,7 @@ string Game::GetInvenDisp()
 	// 인벤이 닫혔다는 신호를 확인하고
 	if (!player.GetInvenOpen()) {
 		go = preGo;
-		cout << "인벤을 닫으려고 한다..\n";
+		//cout << "인벤을 닫으려고 한다..\n";
 	}
 	else go = Go::INVENTORY;
 	return display;
@@ -425,7 +427,7 @@ void Game::Quest()
 	cout << "===============\n";
 }
 
-void Game::PrintItem(int i)
+void Game::BuyItem(int i)
 {
 	ItemManager::GetInstance().SetCurrentItem(i);
 	cout << "~~~ 상점의 아이템들 ~~~\n";

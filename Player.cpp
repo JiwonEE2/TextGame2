@@ -225,9 +225,22 @@ int Player::GetItemNumber() const
 	return inventory->GetItemNumber();
 }
 
-void Player::ShowInventoryItem(int i) const
+void Player::ShowInventoryItem(int i)
 {
-	inventory->ShowItems(i);
+	inventory->SetCurrentItem(i);
+	inventory->ShowItems();
+	if (pressEnter) {
+		cout << "아이템을 작창(사용)하시겠습니까?\n";
+		InputKey(2);
+		// 재선택했을 시
+		if (inventory->GetItemType() == "소모품") {
+			attack += inventory->GetItemAttack();
+			defense += inventory->GetItemDefense();
+			health += inventory->GetItemHealth();
+			if (health >= maxHealth)health = maxHealth;
+			inventory->DeleteItem(i);
+		}
+	}
 }
 
 void Player::AddItem() const

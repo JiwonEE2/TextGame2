@@ -12,6 +12,14 @@ void Inventory::AddItem()
 		ItemManager::GetInstance().GetItemMoney());
 }
 
+void Inventory::DeleteItem(int slotIndex)
+{
+	for (int i = slotIndex;i < items.size();i++) {
+		items[i] = items[i + 1];
+	}
+	items.erase(items.size());
+}
+
 int Inventory::GetItemNumber() const
 {
 	return items.size();
@@ -22,10 +30,10 @@ void Inventory::SetCurrentItem(int invenSlot)
 	currentItem = items[invenSlot];
 }
 
-void Inventory::ShowItems(int i)
+void Inventory::ShowItems() const
 {
-	if (items[i] == nullptr)cout << "비어있음\n";
-	else items[i]->Print();
+	if (currentItem == nullptr)cout << "비어있음\n";
+	else currentItem->Print();
 }
 
 void Inventory::ToggleInven()
@@ -48,4 +56,24 @@ bool Inventory::GetIsOpen() const
 void Inventory::SetIsOpen(bool is)
 {
 	isOpen = is;
+}
+
+string Inventory::GetItemType() const
+{
+	return currentItem->GetType();
+}
+
+int Inventory::GetItemAttack() const
+{
+	return currentItem->GetAttack();
+}
+
+int Inventory::GetItemDefense() const
+{
+	return currentItem->GetDefense();
+}
+
+int Inventory::GetItemHealth() const
+{
+	return currentItem->GetHealth();
 }

@@ -39,7 +39,8 @@ public:
 	void GoShop();
 	void GoForest();
 	void Quest();
-	void PrintItem(int i);
+
+	void BuyItem(int i);
 
 	void IsBed();
 	void MonsterAttack(int i);

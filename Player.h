@@ -52,6 +52,6 @@ public:
 
 	bool GetInvenOpen()const;
 	int GetItemNumber()const;
-	void ShowInventoryItem(int i)const;
+	void ShowInventoryItem(int i);
 	void AddItem()const;
 };
