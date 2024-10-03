@@ -92,9 +92,15 @@ void Player::InputKey(int n)
 		x++;
 		cout << "우\n";
 		break;
-		// J,j
+	case 73:
+	case 105:
+		// I,i
+		cout << "인벤토리키\n";
+		inventory->ToggleInven();
+		break;
 	case 74:
 	case 106:
+		// J,j
 		cout << "공격키\n";
 		pressAttack = true;
 		break;

@@ -13,9 +13,24 @@ void Inventory::SetCurrentItem(int invenSlot)
 
 void Inventory::ShowItems()
 {
-	cout << "~~~ 내가 가진 아이템들 ~~~\n";
-	for (int i = 1; i < items.size() + 1; i++) {
-		SetCurrentItem(i);
-		items[i]->Print();
+	if (isOpen) {
+		cout << "~~~ 인벤토리 ~~~\n";
+		for (int i = 1; i < items.size() + 1; i++) {
+			SetCurrentItem(i);
+			items[i]->Print();
+		}
+		cout << "~~~~~~~~~~~~~~~~\n";
+	}
+}
+
+void Inventory::ToggleInven()
+{
+	if (!isOpen) {
+		isOpen = true;
+		// cout << "인벤토리가 열렸습니다.\n";
+	}
+	else {
+		isOpen = false;
+		// cout << "인벤토리가 닫혔습니다.\n";
 	}
 }

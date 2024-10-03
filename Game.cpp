@@ -143,6 +143,7 @@ void Game::StartGame()
 				while (!player.GetIsChoice() || GetGo() == Go::HOME) {
 					SceneManager::GetInstance().EditShowCurrentScene(GetHomeDisp());
 					player.PrintStatus();
+					player.ShowInventory();
 					player.InputKey(2);
 				}
 			case Go::TOWN:
@@ -151,6 +152,7 @@ void Game::StartGame()
 				while (!player.GetIsChoice() || GetGo() == Go::TOWN) {
 					SceneManager::GetInstance().EditShowCurrentScene(GetTownDisp());
 					player.PrintStatus();
+					player.ShowInventory();
 					player.InputKey(2);
 				}
 				break;
@@ -159,6 +161,7 @@ void Game::StartGame()
 				player.SetXY(1, 1);
 				while (!player.GetIsChoice() || GetGo() == Go::SHOP) {
 					SceneManager::GetInstance().EditShowCurrentScene(GetShopDisp());
+					player.ShowInventory();
 					player.InputKey(3);
 				}
 				break;
@@ -168,6 +171,7 @@ void Game::StartGame()
 				while ((!player.GetIsChoice() || GetGo() == Go::FOREST) && !player.GetIsDeath()) {
 					SceneManager::GetInstance().EditShowCurrentScene(GetForestDisp(earthWorms));
 					player.PrintStatus();
+					player.ShowInventory();
 					player.InputKey(2);
 				}
 				break;
@@ -237,8 +241,6 @@ string Game::GetShopDisp()
 	for (int i = 1; i < ItemManager::GetInstance().GetItemNumber() + 1; i++) {
 		if (x == 3 && y == itemY[i] + 3)PrintItem(i);
 	}
-	// 인벤토리 보여주기
-	player.ShowInventory();
 	if (x == shopToTown[0] && y == shopToTown[1])GoTown();
 	else go = Go::SHOP;
 	return display;
