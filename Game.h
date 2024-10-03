@@ -25,7 +25,7 @@ class Game
 	EarthWorm* mp[];
 public:
 	Game();
-	~Game();
+	~Game() {}
 	void StartGame();
 	string GetStartDisp();
 	string GetHomeDisp();

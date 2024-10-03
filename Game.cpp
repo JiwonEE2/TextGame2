@@ -137,12 +137,6 @@ Game::Game()
 	SceneManager::GetInstance().AddScene("인벤토리", "1. 이전화면으로");
 }
 
-Game::~Game()
-{
-	delete[] * mp;
-	*mp = nullptr;
-}
-
 void Game::StartGame()
 {
 	// 몬스터 생성
@@ -153,6 +147,11 @@ void Game::StartGame()
 		earthWorms[i].Print();
 	}
 	// 시작화면
+	cout << "시작에 앞서 키 설명 드리겠습니다\n";
+	cout << "wasd 이동\n";
+	cout << "j 공격\n";
+	cout << "i 인벤토리\n";
+	cout << "선택은 스페이스바 또는 엔터 가능합니다\n";
 	SceneManager::GetInstance().SetCurrentScene("시작");
 	while (!player.GetIsChoice()) {
 		SceneManager::GetInstance().EditShowCurrentScene(GetStartDisp());
@@ -164,7 +163,7 @@ void Game::StartGame()
 		player.SetPlayerName();
 
 		// 집에서부터 게임 시작
-		go = Go::SHOP;
+		go = Go::HOME;
 		preGo=Go::HOME;
 		while (!player.GetIsDeath()) {
 			player.SetIsChoice(false);
@@ -205,6 +204,7 @@ void Game::StartGame()
 						system("cls");
 						break;
 					}
+					player.PrintStatus();
 					player.InputKey(3);
 				}
 				break;
