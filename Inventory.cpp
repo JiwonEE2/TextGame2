@@ -3,7 +3,13 @@
 void Inventory::AddItem()
 {
 	// currentItem을 Inventory에 넣어야함
-	this->items[items.size() + 1] = new Item(ItemManager::GetInstance().GetItemName(), ItemManager::GetInstance().GetItemAttack(), ItemManager::GetInstance().GetItemHealth(), ItemManager::GetInstance().GetItemMoney());
+	this->items[items.size() + 1] = new Item(
+		ItemManager::GetInstance().GetItemName(), 
+		ItemManager::GetInstance().GetItemType(),
+		ItemManager::GetInstance().GetItemAttack(), 
+		ItemManager::GetInstance().GetItemDefense(),
+		ItemManager::GetInstance().GetItemHealth(), 
+		ItemManager::GetInstance().GetItemMoney());
 }
 
 void Inventory::SetCurrentItem(int invenSlot)

@@ -95,9 +95,18 @@ Game::Game()
 		"------------------\n";
 
 	// 아이템 생성
-	ItemManager::GetInstance().AddItem(1, "칼", 5, 0, 500);
-	ItemManager::GetInstance().AddItem(2, "회복약", 0, 5, 100);
-	ItemManager::GetInstance().AddItem(3, "마약", 10, 10, 1000);
+	ItemManager::GetInstance().AddItem(1, "단검", "무기", 5, 0, 0, 500);
+	ItemManager::GetInstance().AddItem(2, "대검", "무기", 10, 0, 0, 1000);
+	ItemManager::GetInstance().AddItem(3, "낡은모자", "모자", 0, 1, 0, 100);
+	ItemManager::GetInstance().AddItem(4, "튼튼한모자", "모자", 0, 2, 0, 200);
+	ItemManager::GetInstance().AddItem(5, "낡은갑옷", "갑옷", 0, 5, 0, 500);
+	ItemManager::GetInstance().AddItem(6, "튼튼한갑옷", "갑옷", 0, 10, 0, 1000);
+	ItemManager::GetInstance().AddItem(7, "낡은바지", "바지", 0, 3, 0, 300);
+	ItemManager::GetInstance().AddItem(8, "튼튼한바지", "바지", 0, 6, 0, 600);
+	ItemManager::GetInstance().AddItem(9, "낡은부츠", "부츠", 0, 2, 0, 200);
+	ItemManager::GetInstance().AddItem(10, "튼튼한부츠", "부츠", 0, 4, 0, 400);
+	ItemManager::GetInstance().AddItem(11, "데일밴드", "소모품", 0, 0, 5, 50);
+	ItemManager::GetInstance().AddItem(12, "상처약", "소모품", 0, 0, 10, 100);
 
 	// 씬 세팅
 	SceneManager::GetInstance().AddScene("시작", "1. 새 게임, 2. 게임 종료");
@@ -231,7 +240,7 @@ string Game::GetShopDisp()
 	string display = shopDisp;
 	int x = player.GetX();
 	int y = player.GetY();
-	int itemY[10];
+	int itemY[100];
 	for (int i = 1; i < ItemManager::GetInstance().GetItemNumber() + 1; i++) {
 		itemY[i] = i;
 		display.replace((itemY[i] + 3) * 20 + 3, 1, "+");

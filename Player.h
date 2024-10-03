@@ -15,6 +15,7 @@ protected:
 	string name;
 	int x, y;
 	int attack;
+	int defense;
 	int health;
 	int maxHealth;
 	bool isDeath = false;
@@ -32,8 +33,11 @@ public:
 	void SetXY(int x, int y);
 	void InputKey(int n);
 	void PrintStatus()const;
-	int GetAttack();
-	int GetHealth();
+
+	int GetAttack()const;
+	int GetDefense()const;
+	int GetHealth()const;
+
 	bool GetIsDeath();
 	void SetIsDeath(bool is);
 	virtual int GetExperience();

@@ -8,6 +8,7 @@ Player::Player()
 	x = 1, y = 1;
 	pressEnter = false;
 	attack = 3;
+	defense = 3;
 	health = 20;
 	maxHealth = 20;
 	experience = 0;
@@ -126,17 +127,23 @@ void Player::PrintStatus() const
 	cout << "=============== " << name << " (Lv. " << level << ") =============== \n";
 	cout << "체력 : " << health << "/" << maxHealth << "\n";
 	cout << "공격력 : " << attack << "\n";
+	cout << "방어력 : " << defense << "\n";
 	cout << "경험치 : " << experience << "/" << maxExperience << "\n";
 	cout << "돈 : " << money << "\n";
 	cout << "=========================================== \n";
 }
 
-int Player::GetAttack()
+int Player::GetAttack() const
 {
 	return attack;
 }
 
-int Player::GetHealth()
+int Player::GetDefense() const
+{
+	return defense;
+}
+
+int Player::GetHealth() const
 {
 	return health;
 }
