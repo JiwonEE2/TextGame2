@@ -231,6 +231,7 @@ void Game::StartGame()
 						go = preGo;
 						break;
 					}
+					player.PrintStatus();
 					player.InputKey(4);
 				}
 				break;

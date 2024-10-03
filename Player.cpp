@@ -233,12 +233,160 @@ void Player::ShowInventoryItem(int i)
 		cout << "아이템을 작창(사용)하시겠습니까?\n";
 		InputKey(2);
 		// 재선택했을 시
-		if (inventory->GetItemType() == "소모품") {
-			attack += inventory->GetItemAttack();
-			defense += inventory->GetItemDefense();
-			health += inventory->GetItemHealth();
-			if (health >= maxHealth)health = maxHealth;
-			inventory->DeleteItem(i);
+		if (pressEnter) {
+			// 소모품 선택
+			if (inventory->GetItemType() == "소모품") {
+				attack += inventory->GetItemAttack();
+				defense += inventory->GetItemDefense();
+				health += inventory->GetItemHealth();
+				if (health >= maxHealth)health = maxHealth;
+				inventory->DeleteItem(i);
+			}
+			// weapon 선택
+			else if (inventory->GetItemType() == "무기") {
+				// weapon 장착되어 있을 시
+				if (inventory->IsEquippedWeapon()) {
+					cout << inventory->GetEquippedName(0) << "와 변경되었습니다\n";
+					attack -= inventory->GetEquippedAttack(0);
+					defense -= inventory->GetEquippedDefense(0);
+					health -= inventory->GetEquippedHealth(0);
+					attack += inventory->GetItemAttack();
+					defense += inventory->GetItemDefense();
+					health += inventory->GetItemHealth();
+					if (health >= maxHealth)health = maxHealth;
+					// 원래 장착하고 있던 아이템 인벤토리 뒤쪽에 추가
+					inventory->UnEquipItem(i);
+					// 장착
+					inventory->EquipItem(0);
+					// 인벤에서 장착한 아이템 삭제
+					inventory->DeleteItem(i);
+				}
+				else {
+					attack += inventory->GetItemAttack();
+					defense += inventory->GetItemDefense();
+					health += inventory->GetItemHealth();
+					if (health >= maxHealth)health = maxHealth;
+					inventory->EquipItem(0);
+					inventory->SetIsEquipped(0, true);
+					inventory->DeleteItem(i);
+				}
+			}
+			// helmet 선택
+			else if (inventory->GetItemType() == "모자") {
+				// helmet 장착되어 있을 시
+				if (inventory->IsEquippedHelmet()) {
+					cout << inventory->GetEquippedName(1) << "와 변경되었습니다\n";
+					attack -= inventory->GetEquippedAttack(1);
+					defense -= inventory->GetEquippedDefense(1);
+					health -= inventory->GetEquippedHealth(1);
+					attack += inventory->GetItemAttack();
+					defense += inventory->GetItemDefense();
+					health += inventory->GetItemHealth();
+					if (health >= maxHealth)health = maxHealth;
+					// 원래 장착하고 있던 아이템 인벤토리 뒤쪽에 추가
+					inventory->UnEquipItem(i);
+					// 장착
+					inventory->EquipItem(1);
+					// 인벤에서 장착한 아이템 삭제
+					inventory->DeleteItem(i);
+				}
+				else {
+					attack += inventory->GetItemAttack();
+					defense += inventory->GetItemDefense();
+					health += inventory->GetItemHealth();
+					if (health >= maxHealth)health = maxHealth;
+					inventory->EquipItem(1);
+					inventory->SetIsEquipped(1, true);
+					inventory->DeleteItem(i);
+				}
+			}
+			// chestplate 선택
+			else if (inventory->GetItemType() == "갑옷") {
+				// 장착되어 있을 시
+				if (inventory->IsEquippedChestplate()) {
+					cout << inventory->GetEquippedName(2) << "와 변경되었습니다\n";
+					attack -= inventory->GetEquippedAttack(2);
+					defense -= inventory->GetEquippedDefense(2);
+					health -= inventory->GetEquippedHealth(2);
+					attack += inventory->GetItemAttack();
+					defense += inventory->GetItemDefense();
+					health += inventory->GetItemHealth();
+					if (health >= maxHealth)health = maxHealth;
+					// 원래 장착하고 있던 아이템 인벤토리 뒤쪽에 추가
+					inventory->UnEquipItem(i);
+					// 장착
+					inventory->EquipItem(2);
+					// 인벤에서 장착한 아이템 삭제
+					inventory->DeleteItem(i);
+				}
+				else {
+					attack += inventory->GetItemAttack();
+					defense += inventory->GetItemDefense();
+					health += inventory->GetItemHealth();
+					if (health >= maxHealth)health = maxHealth;
+					inventory->EquipItem(2);
+					inventory->SetIsEquipped(2, true);
+					inventory->DeleteItem(i);
+				}
+			}
+			// leggings 선택
+			else if (inventory->GetItemType() == "바지") {
+				// 장착되어 있을 시
+				if (inventory->IsEquippedLeggings()) {
+					cout << inventory->GetEquippedName(3) << "와 변경되었습니다\n";
+					attack -= inventory->GetEquippedAttack(3);
+					defense -= inventory->GetEquippedDefense(3);
+					health -= inventory->GetEquippedHealth(3);
+					attack += inventory->GetItemAttack();
+					defense += inventory->GetItemDefense();
+					health += inventory->GetItemHealth();
+					if (health >= maxHealth)health = maxHealth;
+					// 원래 장착하고 있던 아이템 인벤토리 뒤쪽에 추가
+					inventory->UnEquipItem(i);
+					// 장착
+					inventory->EquipItem(3);
+					// 인벤에서 장착한 아이템 삭제
+					inventory->DeleteItem(i);
+				}
+				else {
+					attack += inventory->GetItemAttack();
+					defense += inventory->GetItemDefense();
+					health += inventory->GetItemHealth();
+					if (health >= maxHealth)health = maxHealth;
+					inventory->EquipItem(3);
+					inventory->SetIsEquipped(3, true);
+					inventory->DeleteItem(i);
+				}
+			}
+			// boot 선택
+			else if (inventory->GetItemType() == "모자") {
+				// 장착되어 있을 시
+				if (inventory->IsEquippedBoots()) {
+					cout << inventory->GetEquippedName(4) << "와 변경되었습니다\n";
+					attack -= inventory->GetEquippedAttack(4);
+					defense -= inventory->GetEquippedDefense(4);
+					health -= inventory->GetEquippedHealth(4);
+					attack += inventory->GetItemAttack();
+					defense += inventory->GetItemDefense();
+					health += inventory->GetItemHealth();
+					if (health >= maxHealth)health = maxHealth;
+					// 원래 장착하고 있던 아이템 인벤토리 뒤쪽에 추가
+					inventory->UnEquipItem(i);
+					// 장착
+					inventory->EquipItem(4);
+					// 인벤에서 장착한 아이템 삭제
+					inventory->DeleteItem(i);
+				}
+				else {
+					attack += inventory->GetItemAttack();
+					defense += inventory->GetItemDefense();
+					health += inventory->GetItemHealth();
+					if (health >= maxHealth)health = maxHealth;
+					inventory->EquipItem(4);
+					inventory->SetIsEquipped(4, true);
+					inventory->DeleteItem(i);
+				}
+			}
 		}
 	}
 }
