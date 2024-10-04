@@ -14,7 +14,7 @@ void Inventory::AddItem()
 
 void Inventory::DeleteItem(int slotIndex)
 {
-	for (int i = slotIndex;i < items.size();i++) {
+	for (int i = slotIndex; i < items.size(); i++) {
 		items[i] = items[i + 1];
 	}
 	items.erase(items.size());
@@ -166,7 +166,7 @@ void Inventory::SetIsEquipped(int index, bool is)
 	else if (index == 1)isEquippedHelmet = is;
 	else if (index == 2)isEquippedChestplate = is;
 	else if (index == 3)isEquippedLeggings = is;
-	else isEquippedBoots = is;
+	else if (index == 4)isEquippedBoots = is;
 }
 
 void Inventory::UnEquipItem(int index)
