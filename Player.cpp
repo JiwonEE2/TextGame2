@@ -70,7 +70,7 @@ void Player::InputKey(int n)
 	case 13:
 	case 32:
 		pressEnter = true;
-		cout << "엔터를 쳤다\n";
+		//cout << "엔터를 쳤다\n";
 		break;
 		// 대,소문자 허용
 	case 87:
@@ -263,6 +263,7 @@ void Player::ShowInventoryItem(int i)
 					inventory->DeleteItem(i);
 				}
 				else {
+					cout << inventory->GetItemName() << "을 장착하였습니다.\n";
 					attack += inventory->GetItemAttack();
 					defense += inventory->GetItemDefense();
 					health += inventory->GetItemHealth();
@@ -294,6 +295,7 @@ void Player::ShowInventoryItem(int i)
 					inventory->DeleteItem(i);
 				}
 				else {
+					cout << inventory->GetItemName() << "을 장착하였습니다.\n";
 					attack += inventory->GetItemAttack();
 					defense += inventory->GetItemDefense();
 					health += inventory->GetItemHealth();
@@ -324,6 +326,7 @@ void Player::ShowInventoryItem(int i)
 					inventory->DeleteItem(i);
 				}
 				else {
+					cout << inventory->GetItemName() << "을 장착하였습니다.\n";
 					attack += inventory->GetItemAttack();
 					defense += inventory->GetItemDefense();
 					health += inventory->GetItemHealth();
@@ -354,6 +357,7 @@ void Player::ShowInventoryItem(int i)
 					inventory->DeleteItem(i);
 				}
 				else {
+					cout << inventory->GetItemName() << "을 장착하였습니다.\n";
 					attack += inventory->GetItemAttack();
 					defense += inventory->GetItemDefense();
 					health += inventory->GetItemHealth();
@@ -384,6 +388,7 @@ void Player::ShowInventoryItem(int i)
 					inventory->DeleteItem(i);
 				}
 				else {
+					cout << inventory->GetItemName() << "을 장착하였습니다.\n";
 					attack += inventory->GetItemAttack();
 					defense += inventory->GetItemDefense();
 					health += inventory->GetItemHealth();
