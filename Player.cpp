@@ -173,6 +173,7 @@ void Player::UpExperience(Player* other)
 	while (experience >= maxExperience) {
 		level++;
 		attack *= 2;
+		defense *= 2;
 		maxHealth *= 2;
 		health = maxHealth;
 		cout << "·¹º§¾÷ !!!!!!\n";
