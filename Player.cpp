@@ -369,7 +369,7 @@ void Player::ShowInventoryItem(int i)
 				}
 			}
 			// boot 선택
-			else if (inventory->GetItemType() == "모자") {
+			else if (inventory->GetItemType() == "부츠") {
 				// 장착되어 있을 시
 				if (inventory->IsEquippedBoots()) {
 					cout << inventory->GetEquippedName(4) << "와 변경되었습니다\n";
